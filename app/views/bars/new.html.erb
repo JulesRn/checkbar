@@ -1,2 +1,11 @@
-<h1>Bars#new</h1>
-<p>Find me in app/views/bars/new.html.erb</p>
+<%= simple_form_for(@bar) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :description %>
+  <%= f.input :category %>
+  <%= f.input :capacity %>
+  <%= f.input :opening_days %>
+  <%= f.input :opening_hours %>
+  <%= f.button :submit, class: "btn btn-primary"%>
+<% end %>
+

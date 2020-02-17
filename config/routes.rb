@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :bar only: [:show, :index, :new, :create]
-  devise_for :users
   root to: 'pages#home'
+  resources :bars, only: [:index, :new, :create, :show]
+  devise_for :users
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
