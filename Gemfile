@@ -16,6 +16,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'devise'
 gem 'simple_calendar', '~> 2.0'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.12.0'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
