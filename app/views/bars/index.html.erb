@@ -4,7 +4,7 @@
       <li> <%= bar.name %></li>
       <li><%= bar.address %></li>
       <li><%= bar.description %></li>
-      <li> <%= f.input :photos, as: :file, input_html: { multiple: true } %></li>
+      <li><%= link_to "See More", bar_path(bar) %></li>
     <% end %>
   </ul>
 
