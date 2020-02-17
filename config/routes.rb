@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'pages#home'
+  root to: 'bars#index'
   resources :bars, only: [:index, :new, :create, :show] do
     resources :reservations, only: [:new, :create, :destroy]
   end
