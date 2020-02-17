@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_153436) do
+ActiveRecord::Schema.define(version: 2020_02_17_160952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_153436) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "opening_days", default: [], array: true
+    t.time "closing_hours"
     t.index ["user_id"], name: "index_bars_on_user_id"
   end
 
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_153436) do
     t.integer "number_of_guest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.time "hours"
     t.index ["bar_id"], name: "index_reservations_on_bar_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end

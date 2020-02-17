@@ -1,6 +1,9 @@
 <h1>Show</h1>
 <%= @bar.name %>
 
-<%= month_calendar do |date| %>
-  <%= date %>
+<%= simple_form_for [@bar, @reservation] do |f| %>
+  <%= f.input :date %>
+  <%= f.input :hours %>
+  <%= f.input :number_of_guest %>
+  <%= f.button :submit, class: 'btn btn-warning'%>
 <% end %>

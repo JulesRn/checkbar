@@ -3,6 +3,7 @@ class ReservationsController < ApplicationController
   def create
     @bar = Bar.find(params[:bar_id])
     @reservation = Reservation.new(reservation_params)
+    @reservation.user = current_user
     @reservation.bar = @bar
     if @reservation.save!
       redirect_to bar_path(@bar)
@@ -10,6 +11,11 @@ class ReservationsController < ApplicationController
       render "bars/show"
     end
   end
+
+  def new
+     @bar = Bar.find(params[:bar_id])
+     @reservation = Reservation.new
+   end
 
   def destroy
     @reservation = Reservation.find(params[:id])
@@ -20,7 +26,6 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:bar_id, :user_id, :date, :number_of_guest)
+    params.require(:reservation).permit(:bar_id, :user_id, :date, :number_of_guest, :hours)
   end
-
 end

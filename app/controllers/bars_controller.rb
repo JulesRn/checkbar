@@ -22,6 +22,6 @@ class BarsController < ApplicationController
   private
 
   def bar_params
-    params.require(:bar).permit(:name, :description, :capacity, :address, :category, :opening_hours, :opening_days)
+    params.require(:bar).permit(:name, :description, :capacity, :address, :category, :opening_hours, :opening_days, :closing_hours)
   end
 end
