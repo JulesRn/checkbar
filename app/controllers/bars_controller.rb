@@ -15,6 +15,7 @@ class BarsController < ApplicationController
   end
 
   def show
+    @reservation = Reservation.new
     @bar = Bar.find(params[:id])
   end
 

@@ -7,7 +7,6 @@ class CreateBars < ActiveRecord::Migration[6.0]
       t.string :category
       t.string :address
       t.time :opening_hours
-      t.date :opening_days
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

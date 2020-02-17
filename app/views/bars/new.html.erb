@@ -4,7 +4,11 @@
   <%= f.input :description %>
   <%= f.input :category %>
   <%= f.input :capacity %>
-  <%= f.input :opening_days %>
+  <%= simple_fields_for :days do |x| %>
+    <% Bar::OPENING_DAYS.each do |day| %>
+      <%= x.input day.to_sym, as: :boolean %>
+    <% end %>
+  <% end %>
   <%= f.input :opening_hours %>
   <%= f.button :submit, class: "btn btn-primary"%>
 <% end %>
