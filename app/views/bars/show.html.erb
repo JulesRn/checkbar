@@ -1,4 +1,12 @@
-<h1>Show</h1>
+<div class="banner text-center" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://lefooding.com/media/W1siZiIsIjIwMTYvMDcvMTgvMTRfMzJfMjZfNTk0X2Jhcl9oYXJyeXNfbmV3X3lvcmtfYmFyX3BhcmlzLmpwZyJdLFsicCIsInRodW1iIiwiNjcyeDYwMCJdXQ/bar-harrys-new-york-bar-paris.jpg?sha=3a132a68);">
+  <div class="container" >
+    <h1 > <%= @bar.name %></h1>
+    <p> <%= @bar.category %>
+<!--     <a class="btn btn-flat" href="#">Apply now</a> -->
+  </div>
+</div>
+<br>
+
 
 <%= @bar.name %>
 <%= @bar.category %>
@@ -6,14 +14,21 @@
 <%= @bar.opening_hours %>
 <%= @bar.closing_hours %>
 
-<% @bar.photos.each do |photo| %>
+  <% @bar.photos.each do |photo| %>
   <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
+  <% end %>
 
-<%= simple_form_for [@bar, @reservation] do |f| %>
-  <%= f.input :date %>
-  <%= f.input :hours %>
-  <%= f.input :number_of_guest %>
-  <%= f.button :submit, class: 'btn btn-warning'%>
-<% end %>
+
+
+
+<div class="container mx-auto" style="width: 300px;">
+  <h4> Ouvert : <%= @bar.opening_days.join(" - ").capitalize %></h4>
+    <p><%= @bar.opening_hours.to_formatted_s(:short) %> - <%= @bar.closing_hours.to_formatted_s(:short) %></p>
+  <%= simple_form_for [@bar, @reservation] do |f| %>
+    <%= f.input :date %>
+    <%= f.input :hours %>
+    <%= f.input :number_of_guest %>
+    <%= f.button :submit, class: 'btn btn-warning'%>
+  <% end %>
+</div>
 
