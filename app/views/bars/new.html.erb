@@ -2,7 +2,7 @@
   <%= f.input :name %>
   <%= f.input :address %>
   <%= f.input :description %>
-  <%= f.input :category %>
+  <%= f.input :category, collection: Bar::CATEGORYS %>
   <%= f.input :capacity %>
   <%= simple_fields_for :days do |x| %>
     <% Bar::OPENING_DAYS.each do |day| %>
