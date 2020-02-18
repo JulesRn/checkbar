@@ -1,8 +1,23 @@
 class BarsController < ApplicationController
   skip_before_action :authenticate_user!, only:[:index, :show]
 
+  # def search
+  #   @bars = Bar.where(params[category: params[:category])
+  #   @bar = Bar.where(name: params[:name])
+  # end
+
   def index
     @bars = Bar.all
+    raise
+
+    if params[:filter] && params[:filter][:name]
+      @bars = @bars.where(name: params[:filter][:name])
+    end
+
+    if params[:filter] && params[:filter][:category]
+      @bars = @bars.where(category: params[:filter][:category])
+    end
+
   end
 
   def new
