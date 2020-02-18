@@ -20,7 +20,11 @@
     <h3>Find the best place to celebrate your event</h3>
 
     <div class="mt-4" style="height: 40px; background-color: grey;">
-      SEARCHBAR
+      <%= simple_form_for :filter, url: bars_path, method: :get do |f| %>
+        <%= f.input :name %>
+        <%= f.input :category, collection: Bar::CATEGORYS %>
+        <%= f.submit %>
+      <% end %>
     </div>
   </div>
 </div>
