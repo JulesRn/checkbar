@@ -8,13 +8,12 @@ class BarsController < ApplicationController
 
   def index
     @bars = Bar.all
-    raise
 
-    if params[:filter] && params[:filter][:name]
+    if params[:filter] && params[:filter][:name].present?
       @bars = @bars.where(name: params[:filter][:name])
     end
 
-    if params[:filter] && params[:filter][:category]
+    if params[:filter] && params[:filter][:category].present?
       @bars = @bars.where(category: params[:filter][:category])
     end
 
