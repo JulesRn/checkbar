@@ -1,4 +1,6 @@
 class BarsController < ApplicationController
+  skip_before_action :authenticate_user!, only:[:index, :show]
+
   def index
     @bars = Bar.all
   end
