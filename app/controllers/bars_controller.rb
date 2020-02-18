@@ -8,7 +8,6 @@ class BarsController < ApplicationController
 
   def index
     @bars = Bar.all
-    raise
 
     if params[:filter] && params[:filter][:name]
       @bars = @bars.where(name: params[:filter][:name])
