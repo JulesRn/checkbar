@@ -1,12 +1,25 @@
-<h1>Bars</h1>
-  <ul>
-    <% @bars.each do |bar| %>
-      <li> <%= bar.name %></li>
-      <li><%= bar.address %></li>
-      <li><%= bar.description %></li>
-      <li><%= link_to "See More", bar_path(bar) %></li>
-    <% end %>
-  </ul>
 
-  <%= link_to "Create a bar", new_bar_path %>
-  <%= link_to "Login", new_user_registration_path %>
+<div class="banner" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%),url('https://images.pexels.com/photos/3201920/pexels-photo-3201920.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; min-height: 100vh;">
+  <div class="menu row justify-content-between px-5 py-4">
+    <div class="column">
+      <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;"%>
+    </div>
+    <div class="column">
+      <%= link_to "Create a bar", new_bar_path, class: "btn btn-outline-light" %>
+      <%= link_to "Login", new_user_registration_path, class: "btn btn-outline-light" %>
+    </div>
+  </div>
+
+  <div class="container text-light"></div>
+  <h1 class="text-center text-light">Bars</h1>
+    <ul>
+      <% @bars.each do |bar| %>
+        <li> <%= bar.name %></li>
+        <li><%= bar.address %></li>
+        <li><%= bar.description %></li>
+        <li><%= link_to "See More", bar_path(bar) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
