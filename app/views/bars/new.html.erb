@@ -11,6 +11,7 @@
   <% end %>
   <%= f.input :opening_hours %>
   <%= f.input :closing_hours %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.button :submit, class: "btn btn-primary"%>
 <% end %>
 
