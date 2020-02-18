@@ -28,7 +28,9 @@ bar = Bar.create!(
     capacity: capacity,
     address:Faker::Address.street_address,
     category: category.sample,
-    photo: "https://source.unsplash.com/collection/622208/bar/1600x900",
+    opening_hours: DateTime.now,
+    closing_hours: DateTime.now,
+    photo: url("https://source.unsplash.com/collection/622208/bar/1600x900"),
     user: user,
 
   )
