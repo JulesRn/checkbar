@@ -49,6 +49,13 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  position:relative;
+}
+
+.card-category .btn {
+position: absolute;
+right: 20px;
+bottom: 10px;
 }
 
 // Smallest device
