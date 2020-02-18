@@ -33,8 +33,8 @@
   <div class="cards">
       <% @bars.each do |bar| %>
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-          <%= bar.name %>
-          <%= link_to "See More", bar_path(bar) %>
+          <h2 class="m-0"><%= bar.name %></h2>
+          <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light" %>
         </div>
       <% end %>
   </div>
