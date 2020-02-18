@@ -32,8 +32,9 @@
 <div class="card-container container" style="background-color: black">
   <div class="cards">
       <% @bars.each do |bar| %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-          <h2 class="m-0"><%= bar.name %></h2>
+        <div class="card-category" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+          <h2 class="m-0" id="name"><%= bar.name %></h2>
+          <p class="m-0" id="address"><%= bar.address %></p>
           <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light" %>
         </div>
       <% end %>
