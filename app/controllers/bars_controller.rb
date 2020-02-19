@@ -16,7 +16,6 @@ class BarsController < ApplicationController
     if params[:filter] && params[:filter][:category].present?
       @bars = @bars.where(category: params[:filter][:category])
     end
-
   end
 
   def new
@@ -34,6 +33,15 @@ class BarsController < ApplicationController
   def show
     @reservation = Reservation.new
     @bar = Bar.find(params[:id])
+  end
+
+  def edit
+    @bar = Bar.find(params[:id])
+  end
+
+  def update
+    @bar.update(bar_params)
+    redirect_to bar_path(@bar)
   end
 
   private
