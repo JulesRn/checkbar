@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'bars#index'
-  resources :bars, only: [:index, :new, :create, :show, :edit] do
+  resources :bars, only: [:index, :new, :create, :show, :edit, :update] do
     resources :reservations, only: [:new, :create, :destroy]
   end
   devise_for :users
