@@ -21,7 +21,10 @@
     <div class="container" >
       <h1> <%= @bar.name %></h1>
       <p class="tag"> <%= @bar.category %></p>
-      <p> Description :  <%= @bar.description %></p>
+      <p style="width: 70%;"> Description :  <%= @bar.description %></p>
+      <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-outline-light' do %>
+      <i class="fa fa-pencil"></i> Edit this bar
+      <% end %>
     </div>
   </div>
 
@@ -50,9 +53,6 @@
     </div>
   </div>
   </div>
-  <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-default' do %>
-  <i class="fa fa-pencil"></i> Edit this bar
-<% end %>
 
 
 </div>
