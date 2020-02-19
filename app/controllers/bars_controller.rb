@@ -61,7 +61,8 @@ class BarsController < ApplicationController
   end
 
   def update
-    @bar = Bar.update(bar_params)
+    @bar = Bar.find(params[:id])
+    @bar.update(bar_params)
     redirect_to bar_path(@bar)
   end
 
