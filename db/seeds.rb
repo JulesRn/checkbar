@@ -10,9 +10,9 @@ require 'faker'
 
 
 
+Reservation.destroy_all
 Bar.destroy_all
 User.destroy_all
-Reservation.destroy_all
 
 user = User.new(email:"coucou12345678@gmail.com", password: "coucou1234567")
 user.save!
