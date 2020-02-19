@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_165207) do
+ActiveRecord::Schema.define(version: 2020_02_19_091542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2020_02_17_165207) do
     t.string "opening_days", default: [], array: true
     t.time "closing_hours"
     t.string "photo"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_bars_on_user_id"
   end
 

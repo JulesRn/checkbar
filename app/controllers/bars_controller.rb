@@ -16,6 +16,18 @@ class BarsController < ApplicationController
     if params[:filter] && params[:filter][:category].present?
       @bars = @bars.where(category: params[:filter][:category])
     end
+
+    # @bars = Bar.geocoded
+
+    @markers = @bars.map do |bar|
+      {
+        lat: bar.latitude,
+        lng: bar.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { bar: bar })
+        # image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
+      }
+    end
+
   end
 
   def new
@@ -33,6 +45,15 @@ class BarsController < ApplicationController
   def show
     @reservation = Reservation.new
     @bar = Bar.find(params[:id])
+    # @bar = Bar.geocoded
+
+    @marker =
+      {
+        lat: @bar.latitude,
+        lng: @bar.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { bar: @bar })
+        # image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
+      }
   end
 
   def edit
