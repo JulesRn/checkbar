@@ -11,8 +11,9 @@ require 'faker'
 
 
 Bar.destroy_all
+User.destroy_all
 
-user = User.new(email:"coucou12345@gmail.com", password: "coucou1234567")
+user = User.new(email:"coucou12345678@gmail.com", password: "coucou1234567")
 user.save!
 
 # photo = ["https://unsplash.com/photos/Uz1ZeMJ2lsI","https://unsplash.com/photos/MxfcoxycH_Y", "https://unsplash.com/photos/iRF0psyhz10", "https://unsplash.com/photos/Zrp9b3PMIy8]
@@ -30,8 +31,11 @@ bar = Bar.create!(
     category: category.sample,
     opening_hours: DateTime.now,
     closing_hours: DateTime.now,
-    photo: url("https://source.unsplash.com/collection/622208/bar/1600x900"),
+    photo: "https://source.unsplash.com/collection/622208/bar/1600x900",
     user: user,
+    latitude: Faker::Address.latitude,
+    longitude: Faker::Address.longitude,
+
 
   )
   puts "#{bar.name}"

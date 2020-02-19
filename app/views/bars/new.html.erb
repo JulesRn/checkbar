@@ -21,7 +21,7 @@
       <%= simple_form_for(@bar) do |f| %>
         <div class="form-row justify-content-around">
           <%= f.input :name, class: "col-2" %>
-          <%= f.input :address, class: "col-3"%>
+          <%= f.input :address, class: "col-3", id: "bar_address", class:"ap-address", class:"ap-dropdown-menu", class: "ap-suggestion" %>
           <%= f.input :category, collection: Bar::CATEGORYS, class: "col-2" %>
           <%= f.input :capacity, class: "col-1" %>
         </div>

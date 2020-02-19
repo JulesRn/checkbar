@@ -56,10 +56,15 @@
         <div class="card-category" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
           <h2 class="m-0" id="name"><%= bar.name %></h2>
           <p class="m-0" id="address"><%= bar.address %></p>
-          <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light" %>
+          <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light", data: { turbolinks: false} %>
         </div>
       <% end %>
     </div>
   </div>
+   <div id="map"
+     style="width: 100%;
+     height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 </div>
 
