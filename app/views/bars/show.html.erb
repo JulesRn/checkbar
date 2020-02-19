@@ -3,7 +3,7 @@
 <div id="parent">
 
 
-  <div class="banner-show " style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 10%, rgba(0,0,0,0.6264880952380952) 30%,rgba(0,0,0,1) 90%), url('<%= url_for(@bar.photos.first) %>')">
+  <div class="banner-show " style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 10%, rgba(0,0,0,0.6264880952380952) 30%,rgba(0,0,0,1) 90%), url(<%= @bar.photo || url_for(@bar.photos.first) %>);">
   <div class="menu row justify-content-between px-5 py-4">
       <div class="column">
         <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;"%>
