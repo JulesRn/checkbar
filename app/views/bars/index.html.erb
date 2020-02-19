@@ -28,7 +28,7 @@
             <div class="col">
               <%= f.input :category, collection: Bar::CATEGORYS, class: "form-control"%>
             </div>
-              <div class="col d-flex align-items-center">
+              <div class="col d-flex align-items-center mt-3">
                   <%= f.button :submit, class: "btn btn-outline-light form-control"%>
             </div>
         </div>
@@ -54,8 +54,8 @@
     <div class="cards">
       <% @bars.each do |bar| %>
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-          <h2 class="m-0"><%= bar.name %></h2>
-          <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light" %>
+          <%= bar.name %>
+          <%= link_to "See More", bar_path(bar) %>
         </div>
       <% end %>
     </div>
