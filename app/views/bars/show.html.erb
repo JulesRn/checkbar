@@ -33,18 +33,18 @@
     </div>
 
   <div class="row" style="height: 500px; background-color: black;">
-  <div class="d-flex card col-4 offset-4 p-4 mt-3" id="child-form" style="border-radius: 5px; background-color: rgba(255,255,255,0.4);">
-    <h4> Ouvert : <%= @bar.opening_days.join(" - ").capitalize %></h4>
-      <p>De <%= @bar.opening_hours.hour %>:<%= @bar.opening_hours.min %> à <%= @bar.closing_hours.hour %>:<%= @bar.closing_hours.min %> </p>
-      <%= simple_form_for [@bar, @reservation] do |f| %>
-        <%= f.input :date %>
-        <%= f.input :hours %>
-        <%= f.input :number_of_guest %>
-        <%= f.button :submit, class: 'btn btn-outline-light'%>
-      <% end %>
+    <div class="d-flex card col-4 offset-4 p-4 mt-3" id="child-form" style="border-radius: 5px; background-color: rgba(255,255,255,0.4);">
+      <h4> Ouvert : <%= @bar.opening_days.join(" - ").capitalize %></h4>
+        <p>De <%= @bar.opening_hours.hour %>:<%= @bar.opening_hours.min %> à <%= @bar.closing_hours.hour %>:<%= @bar.closing_hours.min %> </p>
+        <%= simple_form_for [@bar, @reservation] do |f| %>
+          <%= f.input :date %>
+          <%= f.input :hours %>
+          <%= f.input :number_of_guest %>
+          <%= f.button :submit, class: 'btn btn-outline-light'%>
+        <% end %>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 
 </div>
