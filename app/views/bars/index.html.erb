@@ -53,7 +53,7 @@
   <div class="card-container container" style="background-color: black">
     <div class="cards">
       <% @bars.each do |bar| %>
-        <div class="card-category" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%), url(bar.photo)">
+        <div class="card-category" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%), url(<%= bar.photo %>)">
           <h2 class="m-0" id="name"><%= bar.name %></h2>
           <p class="m-0" id="address"><%= bar.address %></p>
           <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light" %>
