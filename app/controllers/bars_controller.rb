@@ -8,6 +8,7 @@ class BarsController < ApplicationController
 
   def index
     @bars = Bar.all
+    # @bars = Bar.geocoded
 
     if params[:filter] && params[:filter][:name].present?
       @bars = @bars.where(name: params[:filter][:name])
@@ -17,7 +18,6 @@ class BarsController < ApplicationController
       @bars = @bars.where(category: params[:filter][:category])
     end
 
-    # @bars = Bar.geocoded
 
     @markers = @bars.map do |bar|
       {
