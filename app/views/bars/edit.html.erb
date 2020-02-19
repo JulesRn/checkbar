@@ -1,0 +1,51 @@
+<div class="banner text-light text-center" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%),url('https://images.pexels.com/photos/3201920/pexels-photo-3201920.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; min-height: 100vh;">
+
+  <div class="menu row justify-content-between px-5 py-4">
+    <div class="column">
+      <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;"%>
+    </div>
+    <div class="column">
+      <%= link_to "Create a bar", new_bar_path, class: "btn btn-outline-light" %>
+      <%  if !user_signed_in? %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
+      <% else %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="container py-5">
+    <h1 style="font-size: 64px" >Create a bar</h1>
+    <div class="d-flex card p-4 mt-3 " style="border-radius: 5px; background-color: rgba(255,255,255,0.2);">
+      <div class="form-inputs text-center">
+      <%= simple_form_for(@bar) do |f| %>
+        <div class="form-row justify-content-around">
+          <%= f.input :name, class: "col-2" %>
+          <%= f.input :address, class: "col-3"%>
+          <%= f.input :category, collection: Bar::CATEGORYS, class: "col-2" %>
+          <%= f.input :capacity, class: "col-1" %>
+        </div>
+          <%= f.input :description %>
+          <label for="#">Opening days</label>
+          <div class="d-flex flex-wrap justify-content-around">
+            <%= simple_fields_for :days do |x| %>
+              <% Bar::OPENING_DAYS.each do |day| %>
+                <%= x.input day.to_sym, as: :boolean %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="form-row justify-content-around">
+            <%= f.input :opening_hours, class: "col-2" %>
+            <%= f.input :closing_hours, class: "col-2" %>
+            <%= f.input :photos, as: :file, input_html: { multiple: true }, class: "col-8" %>
+          </div>
+        </div>
+        <div class="form-actions text-center mt-4">
+          <%= f.button :submit, "Create a bar", class: 'btn btn-outline-light' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
