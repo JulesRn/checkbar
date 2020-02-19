@@ -27,6 +27,7 @@ class BarsController < ApplicationController
         # image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
     end
+
   end
 
   def new
@@ -53,6 +54,15 @@ class BarsController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { bar: @bar })
         # image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
+  end
+
+  def edit
+    @bar = Bar.find(params[:id])
+  end
+
+  def update
+    @bar = Bar.update(bar_params)
+    redirect_to bar_path(@bar)
   end
 
   private

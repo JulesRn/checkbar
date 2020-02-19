@@ -19,6 +19,7 @@ user.save!
 # photo = ["https://unsplash.com/photos/Uz1ZeMJ2lsI","https://unsplash.com/photos/MxfcoxycH_Y", "https://unsplash.com/photos/iRF0psyhz10", "https://unsplash.com/photos/Zrp9b3PMIy8]
 category = ["Rooftop", "Branché", "Lounge", "Vins", "Latino", "Pub", "Tapas", "Dansant", "Insolite", "Karaoké", "Billard", "Foot", "Club", "Sport", "Piano", "Anniversaire"]
 capacity = (rand(1..100))
+photo = ["https://images.pexels.com/photos/3262277/pexels-photo-3262277.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","https://images.pexels.com/photos/219095/pexels-photo-219095.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","https://images.pexels.com/photos/1554654/pexels-photo-1554654.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", "https://images.pexels.com/photos/1301547/pexels-photo-1301547.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","https://images.pexels.com/photos/331107/pexels-photo-331107.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","https://images.pexels.com/photos/941864/pexels-photo-941864.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"]
 
 puts "try to create bar"
 
@@ -31,7 +32,7 @@ bar = Bar.create!(
     category: category.sample,
     opening_hours: DateTime.now,
     closing_hours: DateTime.now,
-    photo: "https://source.unsplash.com/collection/622208/bar/1600x900",
+    photo: photo.sample,
     user: user,
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
