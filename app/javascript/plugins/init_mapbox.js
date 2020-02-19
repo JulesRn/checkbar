@@ -33,12 +33,12 @@ console.log(markers.length)
 };
 
 const fitMapToMarkers = (map, markers) => {
+  const bounds = new mapboxgl.LngLatBounds();
   if (markers.length > 1) {
-    const bounds = new mapboxgl.LngLatBounds();
     markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
     map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
   } else {
-    const marker = markers
+    const marker = markers;
     bounds.extend([ marker.lng, marker.lat ]);
     map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
   }
