@@ -36,8 +36,6 @@ bar = Bar.create!(
     user: user,
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
-
-
   )
   puts "#{bar.name}"
 end
