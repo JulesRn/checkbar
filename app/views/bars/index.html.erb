@@ -9,32 +9,41 @@
       <div class="column">
         <%= link_to "Create a bar", new_bar_path, class: "btn btn-outline-light" %>
         <%  if !user_signed_in? %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
         <% else %>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
         <% end %>
       </div>
     </div>
 
-        <div class="container justify-content-center text-center text-light py-3">
-          <h1 style="font-size: 80px">Bars</h1>
-          <h3>Find the best place to celebrate your event</h3>
+    <div class="container justify-content-center text-center text-light py-3">
+      <h1 style="font-size: 80px">Bars</h1>
+      <h3>Find the best place to celebrate your event</h3>
 
-            <%= simple_form_for :filter, url: bars_path, method: :get do |f| %>
-        <div class="row">
-            <div class="col">
-              <%= f.input :name, class: "form-control"%>
-            </div>
-            <div class="col">
-              <%= f.input :category, collection: Bar::CATEGORYS, class: "form-control"%>
-            </div>
-              <div class="col d-flex align-items-center mt-3">
-                  <%= f.button :submit, class: "btn btn-outline-light form-control"%>
-            </div>
+      <%= form_tag bars_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Enter a bar name / category / address"
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+
+     <!--  <%= simple_form_for :filter, url: bars_path, method: :get do |f| %>
+      <div class="row">
+        <div class="col">
+          <%= f.input :name, class: "form-control"%>
         </div>
-        <% end %>
+        <div class="col">
+          <%= f.input :category, collection: Bar::CATEGORYS, class: "form-control"%>
+        </div>
+        <div class="col d-flex align-items-center mt-3">
+          <%= f.button :submit, class: "btn btn-outline-light form-control"%>
+        </div>
       </div>
+      <% end %> -->
     </div>
+  </div>
 
   <div class="card-container container" style="background-color: black">
     <div class="cards">

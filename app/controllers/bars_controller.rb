@@ -9,13 +9,24 @@ class BarsController < ApplicationController
   def index
     @bars = Bar.all
 
-    if params[:filter] && params[:filter][:name].present?
-      @bars = @bars.where(name: params[:filter][:name])
+    if params[:query].present?
+      sql_query = " \
+      name @@ :query \
+      OR description @@ :query \
+      OR category @@ :query \
+      "
+      @bars = Bar.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @bars = Bar.all
     end
 
-    if params[:filter] && params[:filter][:category].present?
-      @bars = @bars.where(category: params[:filter][:category])
-    end
+    # if params[:filter] && params[:filter][:name].present?
+    #   @bars = @bars.where(name: params[:filter][:name])
+    # end
+
+    # if params[:filter] && params[:filter][:category].present?
+    #   @bars = @bars.where(category: params[:filter][:category])
+    # end
 
     # @bars = Bar.geocoded
 
