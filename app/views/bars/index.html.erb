@@ -25,15 +25,20 @@
       <h1 style="font-size: 80px">Bars</h1>
       <h3>Find the best place to celebrate your event</h3>
 
-      <%= form_tag bars_path, method: :get do %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "Enter a bar name / category / address"
-        %>
-        <%= submit_tag "Search", class: "btn btn-primary" %>
-      <% end %>
+        <%= form_tag bars_path, method: :get, class: "d-flex justify-content-center mt-4" do %>
+          <div class="col-11 p-0">
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Enter a bar name / category / address"
+          %>
+          </div>
+          <div class="col-1 p-0 m-0">
+          <%= submit_tag "Search", class: "input-group-prepend btn btn-outline-light" %>
+          </div>
+        <% end %>
     </div>
+
   </div>
 
   <div class="card-container container" style="background-color: black">
