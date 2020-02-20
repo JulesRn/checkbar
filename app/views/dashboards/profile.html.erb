@@ -19,20 +19,19 @@
 <h2>Les demandes de réservation de mon Bar</h2>
 
 <div class="card" style="width: 18rem;">
- <% @user.bars.map do |bar|%>
-  <%= cl_image_tag bar.photo, class: "card-img-top" %>
+    <% @resa.each do |r|%>
+  <%= cl_image_tag r.photo, class: "card-img-top" %>
   <div class="card-body">
-    <h5 class="card-title"><%= bar.name%></h5>
-     <p class="card-text"><%= reservation.date %>
-      <%= reservation.hours %>
-      </p>
+    <h5 class="card-title"><%= r.name %></h5>
+      <p class="card-text"><% r.reservations.each do |r|%>
+      <%= r.hours %>
+      <%=r.number_of_guest%>
+    </p>
     <a href="#" class="btn btn-primary">Accepter</a>
     <a href="#" class="btn btn-primary">Refuser</a>
+    <% end %>
+      </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
-
-
-
 
 
