@@ -1,4 +1,4 @@
-
+<div class="homepage" style="background-color: black;">
   <div class="banner" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%),url('https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582119961/bar_bxoxlk.jpg'); background-size: cover; min-height: 100vh;">
     <div class="menu row justify-content-between px-5 py-4">
       <div class="column">
@@ -9,8 +9,8 @@
         <%  if !user_signed_in? %>
           <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
         <% else %>
+          <%= link_to 'My dashboard', profile_path, class: "btn btn-outline-light" %>
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
-          <%= link_to 'Profile', profile_path, class: "btn btn-outline-light" %>
         <% end %>
       </div>
     </div>
@@ -33,7 +33,6 @@
         <% end %>
     </div>
   </div>
-  </div>
 
   <div class="card-container container" style="background-color: black">
     <div class="cards">
@@ -53,4 +52,4 @@
      height: 600px;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
+</div>
