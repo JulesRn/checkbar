@@ -32,9 +32,8 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
-  position: relative;
-  top: -350px;
+  grid-gap: 28px;
+  margin-top: 25px;
 }
 
 .card-category {
