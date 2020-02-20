@@ -28,20 +28,6 @@
         %>
         <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
-
-     <!--  <%= simple_form_for :filter, url: bars_path, method: :get do |f| %>
-      <div class="row">
-        <div class="col">
-          <%= f.input :name, class: "form-control"%>
-        </div>
-        <div class="col">
-          <%= f.input :category, collection: Bar::CATEGORYS, class: "form-control"%>
-        </div>
-        <div class="col d-flex align-items-center mt-3">
-          <%= f.button :submit, class: "btn btn-outline-light form-control"%>
-        </div>
-      </div>
-      <% end %> -->
     </div>
   </div>
 
@@ -50,7 +36,9 @@
       <% @bars.each do |bar| %>
         <div class="card-category" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%), url(<%= bar.photo || url_for(bar.photos.first) %>)">
           <h2 class="m-0" id="name"><%= bar.name %></h2>
-          <p class="m-0" id="address"><%= bar.address.first(20) %>...</p>
+          <h3 class="m-0" id="tag"><%= bar.category %></h3>
+          <p class="m-0" id="address"><%= bar.address %></p>
+
           <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light", data: { turbolinks: false} %>
         </div>
       <% end %>
