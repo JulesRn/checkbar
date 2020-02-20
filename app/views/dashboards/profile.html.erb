@@ -22,10 +22,13 @@
 
 <h2>Mes réservations de Bar</h2>
 
+
+<div class="card" style="width: 18rem;">
+
 <% @user.reservations.each do |reservation|%>
   <h2><%= reservation.status %></h2>
     <div class="card" style="width: 18rem;">
-      <%= cl_image_tag reservation.bar.photo, class: "card-img-top" %>
+      <%= image_tag reservation.bar.photo || url_for(reservation.bar.photos.first), style: "height: 200px;object-fit: cover;" %>
       <div class="card-body">
         <h5 class="card-title"><%= reservation.bar.name%></h5>
         <p class="card-text"><%= reservation.date %>
@@ -39,9 +42,10 @@
 
 <h2>Les demandes de réservation de mon Bar</h2>
 
+
   <% @resa.each do |r|%>
     <div class="card" style="width: 18rem;">
-      <%= cl_image_tag r.photo, class: "card-img-top" %>
+      <%= image_tag r.photo || url_for(r.photos.first), style: "height: 200px;object-fit: cover;" %>
       <div class="card-body">
         <h5 class="card-title"><%= r.name %></h5>
           <div class="card-text">
