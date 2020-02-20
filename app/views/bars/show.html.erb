@@ -73,7 +73,7 @@
           <input name="date" id="flatpickr" class="col-10 offsert-10">
           <%= f.input :hours %>
           <%= f.input :number_of_guest %>
-          <%= f.button :submit, class: 'btn btn-outline-light'%>
+          <%= f.button :submit, class: 'btn btn-outline-light', data: { confirm: "Confirm your reservation to #{@bar.name}?" }%>
         <% end %>
       </div>
     </div>
