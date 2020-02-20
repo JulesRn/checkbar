@@ -11,14 +11,11 @@ class BarsController < ApplicationController
   def index
     @bars = policy_scope(Bar)
 
-    @query = params[:query]
-       if params[:query].present?
-         @bars = policy_scope(Bar).search_by_name_description_and_category(params[:query])
-       else
-         @bars = policy_scope(Bar)
-       end
+    if params[:query].present?
+     @bars = @bars.search_by_name_description_and_category(params[:query])
+    end
 
-    # @bars = Bar.geocoded
+    @bars = @bars.geocoded
 
     @markers = @bars.map do |bar|
       {
@@ -47,6 +44,7 @@ class BarsController < ApplicationController
 
   def show
     @reservation = Reservation.new
+    @review = Review.new
     @bar = Bar.find(params[:id])
     authorize @bar
     # @bar = Bar.geocoded

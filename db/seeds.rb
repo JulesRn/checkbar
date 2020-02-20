@@ -14,7 +14,7 @@ Reservation.destroy_all
 Bar.destroy_all
 User.destroy_all
 
-user = User.new(email:"coucou12345678@gmail.com", password: "coucou1234567")
+user = User.new(email:"coucou12345678@gmail.com", password: "coucou1234567", username: 'Aurian')
 user.save!
 
 # photo = ["https://unsplash.com/photos/Uz1ZeMJ2lsI","https://unsplash.com/photos/MxfcoxycH_Y", "https://unsplash.com/photos/iRF0psyhz10", "https://unsplash.com/photos/Zrp9b3PMIy8]

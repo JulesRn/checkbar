@@ -5,6 +5,7 @@ class Bar < ApplicationRecord
   belongs_to :user
   has_many :reservations
   has_many_attached :photos
+  has_many :reviews, dependent: :destroy
 
   pg_search_scope :search_by_name_description_and_category,
     against: [ :name, :description, :category, :address ],

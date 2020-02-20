@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         patch'/change_status', to: 'reservation#change_status'
       end
     end
+    resources :reviews, only: [:create]
   end
 
   get 'profile', to: 'dashboards#profile'
