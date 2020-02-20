@@ -3,6 +3,7 @@
 
   <div class="banner" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%),url('https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582119961/bar_bxoxlk.jpg'); background-size: cover; min-height: 100vh;">
     <div class="menu row justify-content-between px-5 py-4">
+      <%= link_to 'Profile', profile_path %>
       <div class="column">
         <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;", data: {turbolinks: 'false'}%>
       </div>
@@ -15,6 +16,10 @@
         <% end %>
       </div>
     </div>
+
+        <div class="container justify-content-center text-center text-light py-3">
+          <h1 style="font-size: 80px">Bars</h1>
+          <h3>Find the best place to celebrate your event</h3>
 
     <div class="container justify-content-center text-center text-light py-3">
       <h1 style="font-size: 80px">Bars</h1>

@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :bars, only: [:index, :new, :create, :show, :edit, :update] do
     resources :reservations, only: [:new, :create, :destroy]
   end
+
+  get 'profile', to: 'dashboards#profile'
+
   devise_for :users
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
