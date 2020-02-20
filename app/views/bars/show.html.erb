@@ -21,7 +21,7 @@
       <p><i class="fas fa-users"></i><%= @bar.capacity %></p>
       <p style="width: 70%;"><%= @bar.description %></p>
 
-        <div class="carousel w-100 col-6">
+        <div class="carousel w-100 col-6 pb-2">
           <% if @bar.photos.attached? %>
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
@@ -45,16 +45,7 @@
               </a>
             </div>
             <% else %>
-              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                </ol>
-                <div class="carousel-inner" id="carousel-inner-no-photo">
-                    <div class="carousel-item active">
-                      <%= image_tag "bar.jpg", alt: "First slide", class: "d-block w-100" %>
-                    </div>
-                </div>
-              </div>
+              <%= image_tag "bar.jpg", alt: "First slide", class: "d-block w-100" %>
             <% end %>
           </div>
       <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-outline-light' do %>
