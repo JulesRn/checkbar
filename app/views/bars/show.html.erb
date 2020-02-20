@@ -19,7 +19,8 @@
       <p class="tag"> <%= @bar.category %></p>
       <p><i class="fas fa-map-marker-alt"></i> <%= @bar.address %></p>
       <p><i class="fas fa-users"></i><%= @bar.capacity %></p>
-      <p style="width: 70%;"> Description :  <%= @bar.description %></p>
+      <p style="width: 70%;"><%= @bar.description %></p>
+
         <div class="carousel w-100 col-6" style="height:200px;">
           <% if @bar.photos.attached? %>
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -56,17 +57,14 @@
               </div>
             <% end %>
           </div>
-       <% if policy(@bar).edit? %>
       <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-outline-light' do %>
       <i class="fa fa-pencil"></i> Edit this bar
-       <% end %>
-       <% end %>
+      <% end %>
     </div>
-</div>
+  </div>
 
   <div id="child-container">
     <div class="container-fluid " id="show-photo">
-
       <div id="map" class=" container pt-5"
          style="width: 60%;
          height: 400px;
@@ -86,38 +84,7 @@
           <%= f.input :number_of_guest %>
           <%= f.button :submit, class: 'btn btn-outline-light'%>
         <% end %>
-        </div>
       </div>
-
-    <div class="card col-2 offset-4 p-4 mt-3" style="border-radius: 5px; background-color: rgba(255,255,255,0.2);">
-      <%= simple_form_for [@bar, @review] do |f| %>
-        <%= f.input :rating, collection: 0..5 %>
-        <%= f.input :content%>
-        <%= f.submit class: 'btn btn-outline-light' %>
-      <% end %>
-    </div>
-
     </div>
   </div>
-
-  <div class="list-group" id="reviews">
-        <% @bar.reviews.each do |review| %>
-          <li class="list-group-item">
-            <small>
-              <p><%= review.user.username %></p>
-              <% count = 0 %>
-              <% 5.times do %>
-                <% if review.rating > count %>
-                  <i class="fas fa-star"></i>
-                <% else %>
-                  <i class="far fa-star"></i>
-                <% end %>
-                <% count += 1 %>
-              <% end %>
-            </small>
-            <p><%= review.content %></p>
-          </li>
-        <% end %>
-      </div>
-
 </div>
