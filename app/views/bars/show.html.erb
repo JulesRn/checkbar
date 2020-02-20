@@ -89,6 +89,7 @@
   </div>
 </div>
 
+
 <div class="card col-2 offset-4 p-4 mt-3" style="border-radius: 5px; background-color: rgba(255,255,255,0.2);">
        <%= simple_form_for [@bar, @review] do |f| %>
          <%= f.input :rating, collection: 0..5 %>
@@ -96,6 +97,7 @@
          <%= f.submit class: 'btn btn-outline-light' %>
        <% end %>
      </div>
+
 
     <div class="list-group" id="reviews">
        <% @bar.reviews.each do |review| %>
