@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :bars, only: [:index, :new, :create, :show, :edit, :update] do
     resources :reservations, only: [:new, :create, :destroy] do
       member do
-        patch'/change_status', to: 'reservation#change_status'
+        patch'/change_status', to: 'reservations#change_status'
+        patch'/change_refuse', to: 'reservations#change_refuse'
       end
     end
     resources :reviews, only: [:create]

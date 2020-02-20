@@ -32,6 +32,16 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     authorize @reservation
     @reservation.status = "Accepté"
+    @reservation.save!
+    redirect_to profile_path
+  end
+
+  def change_refuse
+    @reservation = Reservation.find(params[:id])
+    authorize @reservation
+    @reservation.status = "Refusé"
+    @reservation.save!
+    redirect_to profile_path
   end
 
   private
