@@ -18,22 +18,23 @@
       </div>
     </div>
 
-    <div class="container" >
+<div class="container" >
       <h1> <%= @bar.name %></h1>
       <p class="tag"> <%= @bar.category %></p>
       <p style="width: 70%;"> Description :  <%= @bar.description %></p>
+       <% if policy(@bar).edit? %>
       <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-outline-light' do %>
       <i class="fa fa-pencil"></i> Edit this bar
-      <% end %>
+       <% end %>
+       <% end %>
     </div>
-  </div>
 
   <div id="child-container">
     <div class="container-fluid " id="show-photo">
 
-      <% @bar.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-      <% end %>
+      <%# @bar.photos.each do |photo| %>
+      <%#= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+      <%# end %>
 
       <%#= cl_image_tag @bar.photo.key, height: 300, width: 400, crop: :fill %>
       <div id="map" class=" container pt-5"

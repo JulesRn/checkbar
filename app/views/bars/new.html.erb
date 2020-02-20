@@ -5,7 +5,9 @@
       <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;"%>
     </div>
     <div class="column">
+      <% if policy(Bar).create? %>
       <%= link_to "Create a bar", new_bar_path, class: "btn btn-outline-light" %>
+      <% end %>
       <%  if !user_signed_in? %>
       <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
       <% else %>

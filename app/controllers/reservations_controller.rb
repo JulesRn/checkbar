@@ -3,6 +3,7 @@ class ReservationsController < ApplicationController
   def create
     @bar = Bar.find(params[:bar_id])
     @reservation = Reservation.new(reservation_params)
+    authorize @reservation
     @reservation.user = current_user
     @reservation.bar = @bar
     if @reservation.save!
@@ -15,10 +16,12 @@ class ReservationsController < ApplicationController
   def new
      @bar = Bar.find(params[:bar_id])
      @reservation = Reservation.new
+     authorize @reservation
    end
 
   def destroy
     @reservation = Reservation.find(params[:id])
+    authorize @reservation
     @reservation.destroy
     redirect_to bar_path(@reservation.bar)
   end

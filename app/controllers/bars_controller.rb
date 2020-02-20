@@ -1,13 +1,14 @@
 class BarsController < ApplicationController
   skip_before_action :authenticate_user!, only:[:index, :show]
 
+
   # def search
   #   @bars = Bar.where(params[category: params[:category])
   #   @bar = Bar.where(name: params[:name])
   # end
 
   def index
-    @bars = Bar.all
+    @bars = policy_scope(Bar)
 
     if params[:filter] && params[:filter][:name].present?
       @bars = @bars.where(name: params[:filter][:name])
@@ -32,10 +33,12 @@ class BarsController < ApplicationController
 
   def new
     @bar = Bar.new
+    authorize @bar
   end
 
   def create
     @bar = Bar.new(bar_params)
+    authorize @bar
     @bar.user = current_user
     @bar.opening_days = params[:days].select {|k,v|v =='1'}.keys
     @bar.save!
@@ -45,6 +48,7 @@ class BarsController < ApplicationController
   def show
     @reservation = Reservation.new
     @bar = Bar.find(params[:id])
+    authorize @bar
     # @bar = Bar.geocoded
 
     @marker =
@@ -58,11 +62,13 @@ class BarsController < ApplicationController
 
   def edit
     @bar = Bar.find(params[:id])
+    authorize @bar
   end
 
   def update
     @bar = Bar.update(bar_params)
     redirect_to bar_path(@bar)
+    authorize @bar
   end
 
   private

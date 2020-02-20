@@ -3,6 +3,7 @@
 
   <div class="banner" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%),url('/assets/bar.jpg'); background-size: cover; min-height: 100vh;">
     <div class="menu row justify-content-between px-5 py-4">
+      <%= link_to 'Profile', profile_path %>
       <div class="column">
         <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;"%>
       </div>
@@ -31,7 +32,7 @@
               <div class="col d-flex align-items-center mt-3">
                   <%= f.button :submit, class: "btn btn-outline-light form-control"%>
             </div>
-        </div>
+         </div>
         <% end %>
       </div>
     </div>
