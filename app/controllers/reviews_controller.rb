@@ -12,6 +12,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     @review.bar = @bar
     skip_authorization
+
     if @review.save
       redirect_to bar_path(@bar)
     else

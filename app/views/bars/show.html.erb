@@ -1,5 +1,5 @@
 <div id="parent">
-  <div class="banner-show " style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 10%, rgba(0,0,0,0.6264880952380952) 30%,rgba(0,0,0,1) 90%), url(<%= @bar.photo || url_for(@bar.photos.first) %>);">
+  <div class="banner-show " style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 10%, rgba(0,0,0,0.6264880952380952) 30%,rgba(0,0,0,1) 90%), url(<%= @bar.photo || url_for(@bar.photos.first) %>); height: 50vh;">
     <div class="menu row justify-content-between px-5 py-4">
         <div class="column">
           <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;", data: {turbolinks: 'false'}%>
@@ -14,85 +14,25 @@
         </div>
     </div>
 
-    <div class="container" >
-      <h1> <%= @bar.name %></h1>
-      <p class="tag"> <%= @bar.category %></p>
+    <div class="container text-light" >
+      <h1><%= @bar.name %></h1>
+      <p class="tag"><%= @bar.category %></p>
       <p><i class="fas fa-map-marker-alt"></i> <%= @bar.address %></p>
-      <p><i class="fas fa-users"></i><%= @bar.capacity %></p>
-      <p style="width: 70%;"><%= @bar.description %></p>
+      <p><i class="fas fa-users"></i> <%= @bar.capacity %></p>
+    </div>
+  </div>
 
-        <div class="carousel w-100 col-6 pb-2">
-          <% if @bar.photos.attached? %>
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                   <%= cl_image_tag @bar.photos[0].key, alt: "First slide", class: "d-block w-100", style: 'object-fit: cover' %>
-                </div>
-                <div class="carousel-item">
-                   <%= cl_image_tag @bar.photos[1].key, alt: "Second slide", class: "d-block w-100", style: 'object-fit: cover' %>
-                </div>
-                <div class="carousel-item">
-                   <%= cl_image_tag @bar.photos[2].key, alt: "Third slide", class: "d-block w-100", style: 'object-fit: cover' %>
-                </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-            <% else %>
-              <%= image_tag "bar.jpg", alt: "First slide", class: "d-block w-100" %>
-            <% end %>
-          </div>
-      <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-outline-light' do %>
+
+  <div class="container text-light">
+      <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-outline-light mb-4' do %>
       <i class="fa fa-pencil"></i> Edit this bar
       <% end %>
-    </div>
-  </div>
+      <p style="width: 70%;"><%= @bar.description %></p>
 
-  <div id="child-container">
-    <div class="container-fluid " id="show-photo">
-      <div id="map" class=" container pt-5"
-         style="width: 60%;
-         height: 400px;
-         margin-left: 10%;"
-         data-markers="<%= @markers.to_json %>"
-         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
-
-    <div class="row" style="height: 500px; background-color: black;">
-      <div class="d-flex card col-4 offset-4 p-4 mt-3" id="child-form" style="border-radius: 5px; background-color: rgba(255,255,255,0.4);">
-        <h4> Ouvert : <%= @bar.opening_days.join(" - ").capitalize %></h4>
-          <p>De <%= @bar.opening_hours.hour %>:<%= @bar.opening_hours.min %> à <%= @bar.closing_hours.hour %>:<%= @bar.closing_hours.min %> </p>
-          <%= simple_form_for [@bar, @reservation] do |f| %>
-          <input name="date" id="flatpickr" class="col-10 offsert-10">
-          <%= f.input :hours %>
-          <%= f.input :number_of_guest %>
-          <%= f.button :submit, class: 'btn btn-outline-light'%>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="card col-2 offset-4 p-4 mt-3" style="border-radius: 5px; background-color: rgba(255,255,255,0.2);">
-       <%= simple_form_for [@bar, @review] do |f| %>
-         <%= f.input :rating, collection: 0..5 %>
-         <%= f.input :content%>
-         <%= f.submit class: 'btn btn-outline-light' %>
-       <% end %>
-     </div>
-
-
-    <div class="list-group" id="reviews">
+    <div class="list-group reviews">
+      <h2>Reviews</h2>
        <% @bar.reviews.each do |review| %>
-         <li class="list-group-item">
+         <li class="list-group-item reviews">
            <small>
              <p><%= review.user.username %></p>
              <% count = 0 %>
@@ -104,8 +44,73 @@
                <% end %>
                <% count += 1 %>
              <% end %>
-           </small>
-           <p><%= review.content %></p>
-         </li>
-       <% end %>
-     </div>
+          </small>
+          <p><%= review.content %></p>
+        </li>
+      <% end %>
+    </div>
+    <div class="card p-4 my-3" style="border-radius: 5px; background-color: rgba(255,255,255,0.2); width: 70%;">
+      <%= simple_form_for [@bar, @review] do |f| %>
+      <div class="row d-flex justify-content-around align-items-center">
+        <%= f.input :rating, collection: 0..5, class: "col-1", label: "Rating" %>
+        <%= f.input :content, class: "col-6 m-0", placeholder: "Give a feedback", label: false %>
+      </div>
+        <%= f.submit class: 'btn btn-outline-light' %>
+      <% end %>
+    </div>
+
+    <div class="row ">
+        <div class="carousel w-100 col-5 pb-2">
+
+        <% if @bar.photos.attached? %>
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                 <%= cl_image_tag @bar.photos[0].key, alt: "First slide", class: "d-block w-100", style: 'object-fit: cover' %>
+              </div>
+              <div class="carousel-item">
+                 <%= cl_image_tag @bar.photos[1].key, alt: "Second slide", class: "d-block w-100", style: 'object-fit: cover' %>
+              </div>
+              <div class="carousel-item">
+                 <%= cl_image_tag @bar.photos[2].key, alt: "Third slide", class: "d-block w-100", style: 'object-fit: cover' %>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          <% else %>
+            <%= image_tag "bar.jpg", alt: "First slide", class: "d-block w-100" %>
+          <% end %>
+        </div>
+
+
+      <div id="map" class="container p-0 m-0 col-4"
+         style="width: 100%;
+         height: 260px;"
+         data-markers="<%= @markers.to_json %>"
+         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+
+
+      <div class="d-flex card col-4 offset-4 p-4" id="child-form" style="border-radius: 5px; background-color: rgba(255,255,255,0.4);">
+        <h4> Open : <%= @bar.opening_days.join(" - ").capitalize %></h4>
+          <p>From <%= @bar.opening_hours.hour %>:<%= @bar.opening_hours.min %> to <%= @bar.closing_hours.hour %>:<%= @bar.closing_hours.min %> </p>
+          <%= simple_form_for [@bar, @reservation] do |f| %>
+          <input name="date" id="flatpickr" class="col-10 offsert-10">
+          <%= f.input :hours %>
+          <%= f.input :number_of_guest %>
+          <%= f.button :submit, class: 'btn btn-outline-light'%>
+        <% end %>
+      </div>
+
+  </div>
+</div>
+
+
