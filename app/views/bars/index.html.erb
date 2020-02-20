@@ -1,18 +1,18 @@
 
 <div class="homepage">
 
-  <div class="banner" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%),url('/assets/bar.jpg'); background-size: cover; min-height: 100vh;">
+  <div class="banner" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%),url('https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582119961/bar_bxoxlk.jpg'); background-size: cover; min-height: 100vh;">
     <div class="menu row justify-content-between px-5 py-4">
       <%= link_to 'Profile', profile_path %>
       <div class="column">
-        <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;"%>
+        <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;", data: {turbolinks: 'false'}%>
       </div>
       <div class="column">
         <%= link_to "Create a bar", new_bar_path, class: "btn btn-outline-light" %>
         <%  if !user_signed_in? %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
         <% else %>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
         <% end %>
       </div>
     </div>
@@ -21,42 +21,29 @@
           <h1 style="font-size: 80px">Bars</h1>
           <h3>Find the best place to celebrate your event</h3>
 
-            <%= simple_form_for :filter, url: bars_path, method: :get do |f| %>
-        <div class="row">
-            <div class="col">
-              <%= f.input :name, class: "form-control"%>
-            </div>
-            <div class="col">
-              <%= f.input :category, collection: Bar::CATEGORYS, class: "form-control"%>
-            </div>
-              <div class="col d-flex align-items-center mt-3">
-                  <%= f.button :submit, class: "btn btn-outline-light form-control"%>
-            </div>
-         </div>
-        <% end %>
-      </div>
+    <div class="container justify-content-center text-center text-light py-3">
+      <h1 style="font-size: 80px">Bars</h1>
+      <h3>Find the best place to celebrate your event</h3>
+
+      <%= form_tag bars_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Enter a bar name / category / address"
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
     </div>
-
-
-
-
-<!--       <div class="input-group">
-        <input type="text" aria-label="First name" class="form-control">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Save filter</span>
-        </div>
-        <input type="text" aria-label="Last name" class="form-control">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Save filter</span>
-        </div>
-      </div> -->
+  </div>
 
   <div class="card-container container" style="background-color: black">
     <div class="cards">
       <% @bars.each do |bar| %>
         <div class="card-category" style="background-image:linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%), url(<%= bar.photo || url_for(bar.photos.first) %>)">
           <h2 class="m-0" id="name"><%= bar.name %></h2>
+          <h3 class="m-0" id="tag"><%= bar.category %></h3>
           <p class="m-0" id="address"><%= bar.address %></p>
+
           <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light", data: { turbolinks: false} %>
         </div>
       <% end %>

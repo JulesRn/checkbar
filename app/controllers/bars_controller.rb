@@ -7,16 +7,29 @@ class BarsController < ApplicationController
   #   @bar = Bar.where(name: params[:name])
   # end
 
+
   def index
     @bars = policy_scope(Bar)
 
-    if params[:filter] && params[:filter][:name].present?
-      @bars = @bars.where(name: params[:filter][:name])
+    if params[:query].present?
+      sql_query = " \
+      name @@ :query \
+      OR description @@ :query \
+      OR category @@ :query \
+      OR address @@ :query \
+      "
+      @bars = Bar.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @bars = Bar.all
     end
 
-    if params[:filter] && params[:filter][:category].present?
-      @bars = @bars.where(category: params[:filter][:category])
-    end
+    # if params[:filter] && params[:filter][:name].present?
+    #   @bars = @bars.where(name: params[:filter][:name])
+    # end
+
+    # if params[:filter] && params[:filter][:category].present?
+    #   @bars = @bars.where(category: params[:filter][:category])
+    # end
 
     # @bars = Bar.geocoded
 
@@ -66,7 +79,8 @@ class BarsController < ApplicationController
   end
 
   def update
-    @bar = Bar.update(bar_params)
+    @bar = Bar.find(params[:id])
+    @bar.update(bar_params)
     redirect_to bar_path(@bar)
     authorize @bar
   end
@@ -74,6 +88,6 @@ class BarsController < ApplicationController
   private
 
   def bar_params
-    params.require(:bar).permit(:name, :description, :capacity, :address, :category, :opening_hours, :opening_days, :closing_hours, photos: [])
+    params.require(:bar).permit(:name, :description, :capacity, :address, :category, :opening_hours, :latitude, :longitude, :opening_days, :closing_hours, photos: [])
   end
 end

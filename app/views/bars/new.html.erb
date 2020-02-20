@@ -2,7 +2,7 @@
 
   <div class="menu row justify-content-between px-5 py-4">
     <div class="column">
-      <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;"%>
+      <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;", data: {turbolinks: 'false'}%>
     </div>
     <div class="column">
       <% if policy(Bar).create? %>

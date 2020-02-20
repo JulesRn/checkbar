@@ -10,6 +10,7 @@ require 'faker'
 
 
 
+Reservation.destroy_all
 Bar.destroy_all
 User.destroy_all
 
@@ -19,11 +20,25 @@ user.save!
 # photo = ["https://unsplash.com/photos/Uz1ZeMJ2lsI","https://unsplash.com/photos/MxfcoxycH_Y", "https://unsplash.com/photos/iRF0psyhz10", "https://unsplash.com/photos/Zrp9b3PMIy8]
 category = ["Rooftop", "Branché", "Lounge", "Vins", "Latino", "Pub", "Tapas", "Dansant", "Insolite", "Karaoké", "Billard", "Foot", "Club", "Sport", "Piano", "Anniversaire"]
 capacity = (rand(1..100))
-photo = ["https://images.pexels.com/photos/3262277/pexels-photo-3262277.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","https://images.pexels.com/photos/219095/pexels-photo-219095.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","https://images.pexels.com/photos/1554654/pexels-photo-1554654.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", "https://images.pexels.com/photos/1301547/pexels-photo-1301547.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","https://images.pexels.com/photos/331107/pexels-photo-331107.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","https://images.pexels.com/photos/941864/pexels-photo-941864.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"]
+photo = ["https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122027/1580214800_5e302a104f398_u1glvq.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122028/1575380060_5de6645c3bc73_v5qg3n.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122027/1579115004_5e1f61fc821b9_ztyisa.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122026/1562690558_5d24c3fe96d42_kcjeum.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122025/1564652561_5d42b4116e71d_1_xl3gxd.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122025/1562690558_5d24c3feed014_uzenpr.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122024/1562579004_5d23103c2c21e_jay3ur.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122024/1562579004_5d23103c2c21e_jay3ur.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122024/1562578758_5d230f46234a0_jurhoi.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122024/1562578599_5d230ea79216f_bjyqbf.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122024/1562578729_5d230f29e6535_tl3web.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122024/1562578574_5d230e8e429aa_zpbgav.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122024/1562578990_5d23102e4006d_rcg46d.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122024/1562578990_5d23102e4006d_rcg46d.jpg",
+  "https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582117811/3g29qb0h64p7mqwhwg34rscm4but.jpg"]
 
 puts "try to create bar"
 
-20.times do
+10.times do
 bar = Bar.create!(
     name: Faker::Restaurant.name,
     description: Faker::Restaurant.description ,
@@ -36,8 +51,6 @@ bar = Bar.create!(
     user: user,
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
-
-
   )
   puts "#{bar.name}"
 end

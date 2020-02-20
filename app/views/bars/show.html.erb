@@ -4,18 +4,18 @@
 
 
   <div class="banner-show " style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 10%, rgba(0,0,0,0.6264880952380952) 30%,rgba(0,0,0,1) 90%), url(<%= @bar.photo || url_for(@bar.photos.first) %>);">
-  <div class="menu row justify-content-between px-5 py-4">
-      <div class="column">
-        <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;"%>
-      </div>
-      <div class="column">
-        <%= link_to "Create a bar", new_bar_path, class: "btn btn-outline-light" %>
-        <%  if !user_signed_in? %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
-        <% else %>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
-        <% end %>
-      </div>
+    <div class="menu row justify-content-between px-5 py-4">
+        <div class="column">
+          <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;", data: {turbolinks: 'false'}%>
+        </div>
+        <div class="column">
+          <%= link_to "Create a bar", new_bar_path, class: "btn btn-outline-light" %>
+          <%  if !user_signed_in? %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
+          <% else %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
+          <% end %>
+        </div>
     </div>
 
 <div class="container" >
@@ -32,11 +32,6 @@
   <div id="child-container">
     <div class="container-fluid " id="show-photo">
 
-      <%# @bar.photos.each do |photo| %>
-      <%#= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-      <%# end %>
-
-      <%#= cl_image_tag @bar.photo.key, height: 300, width: 400, crop: :fill %>
       <div id="map" class=" container pt-5"
          style="width: 60%;
          height: 400px;
@@ -46,25 +41,17 @@
       </div>
     </div>
 
-  <div class="row" style="height: 500px; background-color: black;">
-    <div class="d-flex card col-4 offset-4 p-4 mt-3" id="child-form" style="border-radius: 5px; background-color: rgba(255,255,255,0.4);">
-      <h4> Ouvert : <%= @bar.opening_days.join(" - ").capitalize %></h4>
-        <p>De <%= @bar.opening_hours.hour %>:<%= @bar.opening_hours.min %> à <%= @bar.closing_hours.hour %>:<%= @bar.closing_hours.min %> </p>
-        <%= simple_form_for [@bar, @reservation] do |f| %>
-          <%= f.input :date %>
+    <div class="row" style="height: 500px; background-color: black;">
+      <div class="d-flex card col-4 offset-4 p-4 mt-3" id="child-form" style="border-radius: 5px; background-color: rgba(255,255,255,0.4);">
+        <h4> Ouvert : <%= @bar.opening_days.join(" - ").capitalize %></h4>
+          <p>De <%= @bar.opening_hours.hour %>:<%= @bar.opening_hours.min %> à <%= @bar.closing_hours.hour %>:<%= @bar.closing_hours.min %> </p>
+          <%= simple_form_for [@bar, @reservation] do |f| %>
+          <input name="date" id="flatpickr" class="col-10 offsert-10">
           <%= f.input :hours %>
           <%= f.input :number_of_guest %>
           <%= f.button :submit, class: 'btn btn-outline-light'%>
         <% end %>
-        </div>
       </div>
     </div>
   </div>
-
-
-
 </div>
-
-
-<!-- class="container mx-auto" style="width: 300px;"
- -->
