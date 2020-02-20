@@ -47,15 +47,14 @@ class BarsController < ApplicationController
     @review = Review.new
     @bar = Bar.find(params[:id])
     authorize @bar
-    # @bar = Bar.geocoded
 
-    @marker =
-      {
+    @markers =
+      [{
         lat: @bar.latitude,
         lng: @bar.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { bar: @bar })
         # image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
-      }
+      }]
   end
 
   def edit
