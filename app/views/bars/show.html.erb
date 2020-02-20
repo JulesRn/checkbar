@@ -22,10 +22,14 @@
     </div>
   </div>
 
+  <br>
+  <br>
 
   <div class="container text-light">
+      <% if policy(@bar).edit? %>
       <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-outline-light mb-4' do %>
       <i class="fa fa-pencil"></i> Edit this bar
+      <% end %>
       <% end %>
       <p style="width: 70%;"><%= @bar.description %></p>
 
