@@ -23,8 +23,6 @@
 <h2>Mes réservations de Bar</h2>
 
 
-<div class="card" style="width: 18rem;">
-
 <% @user.reservations.each do |reservation|%>
   <h2><%= reservation.status %></h2>
     <div class="card" style="width: 18rem;">
@@ -50,14 +48,14 @@
         <h5 class="card-title"><%= r.name %></h5>
           <div class="card-text">
             <% r.reservations.each do |r|%>
-            <div class="<%= 'green' if r.status == 'Acccepté' %>">
+            <div class="<%= 'green' if r.status == 'Accepté' %>">
             <div class="<%= 'red' if r.status == 'Refusé' %>">
               <p> <%= r.hours %></p>
               <p><%=r.number_of_guest%></p>
             </div>
             </div>
             <% if r.status == 'En attente'%>
-              <%= link_to 'Acccepted', change_status_bar_reservation_path(r.bar.id, r.id), method: :patch ,class: "btn btn-primary"%>
+              <%= link_to 'Accepted', change_status_bar_reservation_path(r.bar.id, r.id), method: :patch ,class: "btn btn-primary"%>
               <%= link_to 'Denied', change_refuse_bar_reservation_path(r.bar.id, r.id), method: :patch ,class: "btn btn-primary"%>
                 <% end %>
             <% end %>
