@@ -25,4 +25,12 @@ class ReservationPolicy < ApplicationPolicy
     true
   end
 
+  def change_status?
+    true
+  end
+
+   def change_refuse?
+    true
+  end
+
 end
