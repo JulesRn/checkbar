@@ -56,14 +56,17 @@
               </div>
             <% end %>
           </div>
+       <% if policy(@bar).edit? %>
       <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-outline-light' do %>
       <i class="fa fa-pencil"></i> Edit this bar
-      <% end %>
+       <% end %>
+       <% end %>
     </div>
-  </div>
+</div>
 
   <div id="child-container">
     <div class="container-fluid " id="show-photo">
+
       <div id="map" class=" container pt-5"
          style="width: 60%;
          height: 400px;

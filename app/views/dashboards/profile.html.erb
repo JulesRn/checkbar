@@ -1,0 +1,38 @@
+<h1><%= @user.email %></h1>
+
+<h2>Mes réservations de Bar</h2>
+
+<div class="card" style="width: 18rem;">
+  <% @user.reservations.each do |reservation|%>
+  <%= cl_image_tag reservation.bar.photo, class: "card-img-top" %>
+  <div class="card-body">
+    <h5 class="card-title"><%= reservation.bar.name%></h5>
+    <p class="card-text"><%= reservation.date %>
+      <%= reservation.hours %>
+      <%=reservation.number_of_guest%>
+    </p>
+      </div>
+    <% end %>
+  </div>
+
+
+<h2>Les demandes de réservation de mon Bar</h2>
+
+<div class="card" style="width: 18rem;">
+ <% @user.bars.map do |bar|%>
+  <%= cl_image_tag bar.photo, class: "card-img-top" %>
+  <div class="card-body">
+    <h5 class="card-title"><%= bar.name%></h5>
+     <p class="card-text"><%= reservation.date %>
+      <%= reservation.hours %>
+      </p>
+    <a href="#" class="btn btn-primary">Accepter</a>
+    <a href="#" class="btn btn-primary">Refuser</a>
+  </div>
+  <% end %>
+</div>
+
+
+
+
+

@@ -32,9 +32,8 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
-  position: relative;
-  top: -350px;
+  grid-gap: 28px;
+  margin-top: 25px;
 }
 
 .card-category {
@@ -51,7 +50,6 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(255,255,255,0.2);
   position:relative;
-
 }
 
 .card-category .btn {
