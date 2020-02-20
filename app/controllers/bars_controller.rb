@@ -47,6 +47,7 @@ class BarsController < ApplicationController
 
   def show
     @reservation = Reservation.new
+    @review = Review.new
     @bar = Bar.find(params[:id])
     authorize @bar
     # @bar = Bar.geocoded
