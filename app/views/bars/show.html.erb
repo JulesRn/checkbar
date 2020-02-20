@@ -56,10 +56,39 @@
           <%= f.button :submit, class: 'btn btn-outline-light'%>
         <% end %>
         </div>
+
       </div>
+
+    <div class="card col-2 offset-4 p-4 mt-3" style="border-radius: 5px; background-color: rgba(255,255,255,0.2);">
+      <%= simple_form_for [@bar, @review] do |f| %>
+        <%= f.input :rating, collection: 0..5 %>
+        <%= f.input :content%>
+        <%= f.submit class: 'btn btn-outline-light' %>
+      <% end %>
+    </div>
+
     </div>
   </div>
 
+  <div class="list-group" id="reviews">
+        <% @bar.reviews.each do |review| %>
+          <li class="list-group-item">
+            <small>
+              <p><%= review.user.username %></p>
+              <% count = 0 %>
+              <% 5.times do %>
+                <% if review.rating > count %>
+                  <i class="fas fa-star"></i>
+                <% else %>
+                  <i class="far fa-star"></i>
+                <% end %>
+                <% count += 1 %>
+              <% end %>
+            </small>
+            <p><%= review.content %></p>
+          </li>
+        <% end %>
+      </div>
 
 
 </div>
