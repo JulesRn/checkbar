@@ -32,9 +32,8 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
-  position: relative;
-  top: -350px;
+  grid-gap: 28px;
+  margin-top: 25px;
 }
 
 .card-category {
@@ -55,7 +54,7 @@
 
 .card-category .btn {
 position: absolute;
-right: 20px;
+right: 10px;
 bottom: 10px;
 }
 
@@ -98,6 +97,7 @@ bottom: 10px;
   position: absolute;
   left: 20px;
   bottom: 30px;
+  font-size: 20px;
 }
 
 #address {
@@ -105,5 +105,15 @@ bottom: 10px;
   left: 20px;
   bottom: 10px;
   font-weight: lighter;
-  font-size: 18px;
+  font-size: 14px;
+}
+
+#tag {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 14px;
+  padding: 5px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
 }
