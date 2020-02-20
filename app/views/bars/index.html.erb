@@ -41,7 +41,11 @@
           <h3 class="m-0" id="tag"><%= bar.category %></h3>
           <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light", data: { turbolinks: false} %>
           <h2 class="m-0" id="name"><%= bar.name %></h2>
-          <p class="m-0" id="address"><%= bar.address %></p>
+          <% if bar.address.size >= 30 %>
+            <p class="m-0" id="address"><%= bar.address.first(30) %>...</p>
+          <% else %>
+            <p class="m-0" id="address"><%= bar.address %></p>
+          <% end %>
         </div>
       <% end %>
     </div>
