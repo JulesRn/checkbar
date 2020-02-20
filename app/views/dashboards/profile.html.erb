@@ -2,35 +2,41 @@
 
 <h2>Mes réservations de Bar</h2>
 
-<div class="card" style="width: 18rem;">
-  <% @user.reservations.each do |reservation|%>
-  <%= cl_image_tag reservation.bar.photo, class: "card-img-top" %>
-  <div class="card-body">
-    <h5 class="card-title"><%= reservation.bar.name%></h5>
-    <p class="card-text"><%= reservation.date %>
-      <%= reservation.hours %>
-      <%=reservation.number_of_guest%>
-    </p>
+<% @user.reservations.each do |reservation|%>
+  <h2><%= reservation.status %></h2>
+    <div class="card" style="width: 18rem;">
+      <%= cl_image_tag reservation.bar.photo, class: "card-img-top" %>
+      <div class="card-body">
+        <h5 class="card-title"><%= reservation.bar.name%></h5>
+        <p class="card-text"><%= reservation.date %>
+          <%= reservation.hours %>
+          <%=reservation.number_of_guest%>
+        </p>
+          </div>
       </div>
     <% end %>
-  </div>
 
 
 <h2>Les demandes de réservation de mon Bar</h2>
 
 <div class="card" style="width: 18rem;">
- <% @user.bars.map do |bar|%>
-  <%= cl_image_tag bar.photo, class: "card-img-top" %>
+    <% @resa.each do |r|%>
+  <%= cl_image_tag r.photo, class: "card-img-top" %>
   <div class="card-body">
-    <h5 class="card-title"><%= bar.name%></h5>
-     <p class="card-text"><%= reservation.date %>
-      <%= reservation.hours %>
-      </p>
-    <a href="#" class="btn btn-primary">Accepter</a>
-    <a href="#" class="btn btn-primary">Refuser</a>
+    <h5 class="card-title"><%= r.name %></h5>
+      <p class="card-text"><% r.reservations.each do |r|%>
+      <%= r.hours %>
+      <%=r.number_of_guest%>
+    </p>
+     <%= link_to 'Accepter', change_status_bar_reservation_path ,class: "btn btn-primary"%>
+      <%= link_to 'Refuser', change_status_bar_reservation_path ,class: "btn btn-primary"%>
+    <% end %>
+      </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
+
+
+
 
 
 

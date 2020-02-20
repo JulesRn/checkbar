@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root to: 'bars#index'
   resources :bars, only: [:index, :new, :create, :show, :edit, :update] do
-    resources :reservations, only: [:new, :create, :destroy]
+    resources :reservations, only: [:new, :create, :destroy] do
+      member do
+        patch'/change_status', to: 'reservation#change_status'
+      end
+    end
   end
 
   get 'profile', to: 'dashboards#profile'

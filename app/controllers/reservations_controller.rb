@@ -7,6 +7,7 @@ class ReservationsController < ApplicationController
     @reservation.date = Date.parse(params[:date])
     @reservation.user = current_user
     @reservation.bar = @bar
+    @reservation.status = "En attente"
     if @reservation.save!
       redirect_to bar_path(@bar)
     else
@@ -27,9 +28,15 @@ class ReservationsController < ApplicationController
     redirect_to bar_path(@reservation.bar)
   end
 
+  def change_status
+    @reservation = Reservation.find(params[:id])
+    authorize @reservation
+    @reservation.status = "Accepté"
+  end
+
   private
 
   def reservation_params
-    params.require(:reservation).permit(:bar_id, :user_id, :number_of_guest, :hours)
+    params.require(:reservation).permit(:bar_id, :user_id, :number_of_guest, :hours, :status)
   end
 end
