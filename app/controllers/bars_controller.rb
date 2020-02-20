@@ -14,6 +14,7 @@ class BarsController < ApplicationController
       name @@ :query \
       OR description @@ :query \
       OR category @@ :query \
+      OR address @@ :query \
       "
       @bars = Bar.where(sql_query, query: "%#{params[:query]}%")
     else
