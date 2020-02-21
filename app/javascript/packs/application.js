@@ -17,12 +17,14 @@ document.addEventListener('turbolinks:load', () => {
   if (document.querySelector('#bar_address')) initAutocomplete();
   if (document.querySelector("#flatpickr")) flatpickr("#flatpickr", {});
 
-  initSweetalert('#sweet-alert-demo', {
-    title: "Thank you for your booking",
-    buttons: false,
-    timer: 12000,
-    text: "Check the status of your booking on your dashboard",
-    icon: "success"
-  });
+  if (document.querySelector('#sweet-alert-demo')) {
+    initSweetalert('#sweet-alert-demo', {
+      title: "Thank you for your booking",
+      buttons: false,
+      timer: 12000,
+      text: "Check the status of your booking on your dashboard",
+      icon: "success"
+    });
+  }
 })
 
