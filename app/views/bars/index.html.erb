@@ -40,7 +40,7 @@
       <% @bars.first(3).each do |bar| %>
         <div class="card-category" style="background-image:linear-gradient(0deg, rgba(0,0,0,0.1474964985994398) 0%, rgba(0,0,0,0.1474964985994398) 100%), url(<%= bar.photo || url_for(bar.photos.first) %>)">
           <h3 class="m-0" id="tag"><%= bar.category %></h3>
-          <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light", data: { turbolinks: false} %>
+          <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light" %>
           <h2 class="m-0" id="name"><%= bar.name %></h2>
           <% if bar.address.size >= 30 %>
             <p class="m-0" id="address"><%= bar.address.first(30) %>...</p>
@@ -60,7 +60,7 @@
         <% @bars.last(@bars.size - 3).each do |bar| %>
           <div class="card-category" style="background-image:linear-gradient(0deg, rgba(0,0,0,0.1474964985994398) 0%, rgba(0,0,0,0.1474964985994398) 100%), url(<%= bar.photo || url_for(bar.photos.first) %>)">
             <h3 class="m-0" id="tag"><%= bar.category %></h3>
-            <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light", data: { turbolinks: false} %>
+            <%= link_to "See More", bar_path(bar), class: "btn btn-outline-light"%>
             <h2 class="m-0" id="name"><%= bar.name %></h2>
             <% if bar.address.size >= 30 %>
               <p class="m-0" id="address"><%= bar.address.first(30) %>...</p>
