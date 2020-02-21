@@ -14,8 +14,17 @@ Reservation.destroy_all
 Bar.destroy_all
 User.destroy_all
 
-user = User.new(email:"coucou12345678@gmail.com", password: "coucou1234567", username: 'Aurian')
-user.save!
+
+user1 = User.new(email:"claire@gmail.com", password: "coucoutoi", username: 'Claire')
+user1.save!
+
+user2 = User.new(email:"marc@gmail.com", password: "coucoutoi", username: 'Marc')
+user2.save!
+
+user3 = User.new(email:"guillaume@gmail.com", password: "coucoutoi", username: 'Guillaume')
+user3.save!
+
+user_array = [user1, user2, user3]
 
 # photo = ["https://unsplash.com/photos/Uz1ZeMJ2lsI","https://unsplash.com/photos/MxfcoxycH_Y", "https://unsplash.com/photos/iRF0psyhz10", "https://unsplash.com/photos/Zrp9b3PMIy8]
 category = ["Rooftop", "Branché", "Lounge", "Vins", "Latino", "Pub", "Tapas", "Dansant", "Insolite", "Karaoké", "Billard", "Foot", "Club", "Sport", "Piano", "Anniversaire"]
@@ -50,7 +59,7 @@ bar = Bar.create!(
     opening_hours: Time.parse('18:00'),
     closing_hours: Time.parse('03:00'),
     photo: photo.sample,
-    user: user,
+    user: user_array.sample,
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
   )
