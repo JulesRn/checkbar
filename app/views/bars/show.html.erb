@@ -109,7 +109,7 @@
           <p>From <%= @bar.opening_hours.hour %>:<%= @bar.opening_hours.min %> to <%= @bar.closing_hours.hour %>:<%= @bar.closing_hours.min %> </p>
           <%= simple_form_for [@bar, @reservation] do |f| %>
           <input name="date" id="flatpickr" class="col-10 offsert-10">
-          <%= f.input :hours %>
+          <%= f.input :hours, as: :time, default: Time.parse('17:00')%>
           <%= f.input :number_of_guest %>
           <%= f.button :submit, class: 'btn btn-outline-light', data: { confirm: "Confirm your reservation to #{@bar.name}?" }%>
         <% end %>
