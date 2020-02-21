@@ -1,5 +1,5 @@
 <div class="text-light" style="background-color: black;">
-  <div class="banner" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.2) 100%),url('https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582119961/bar_bxoxlk.jpg'); background-size: cover; background-position: center; min-height: 50vh;">
+  <div class="banner" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.2) 100%),url('https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582119961/bar_bxoxlk.jpg'); background-size: cover; background-position: center; min-height: 50vh; position:relative;">
     <div class="menu row justify-content-between px-5 py-4">
       <div class="column">
         <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;", data: {turbolinks: 'false'}%>
@@ -15,11 +15,12 @@
       </div>
     </div>
 
-
-    <h1>Welcome on your dashboard, <%= @user.username %>!</h1>
+  <div class="container">
+    <h1 style="position: absolute; bottom: 40px; font-size:64px;">Welcome on your dashboard, <%= @user.username %>!</h1>
+  </div>
   </div>
 
-<div class="container">
+<div class="container py-5" style="min-height: 50vh;">
   <div class="row">
     <div class="col-6 <%= 'offset-3' if !@resa.size.positive? %>">
       <h2>My bookings</h2>
@@ -27,76 +28,75 @@
 
       <% @user.reservations.each do |reservation|%>
         <% if reservation.status == "En attente" %>
-          <div class="card text-primary" style="width: 18rem;">
-            <%= image_tag reservation.bar.photo || url_for(reservation.bar.photos.first), style: "height: 200px;object-fit: cover;" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= reservation.bar.name%></h5>
-              <p class="card-text"><%= reservation.date %>
-                <%= reservation.hours %>
-                <%=reservation.number_of_guest%>
-              </p>
-                </div>
-            </div>
+          <div class="card-category col-12 my-4" style="background-image:linear-gradient(0deg, rgba(0,0,0,0.1474964985994398) 0%, rgba(0,0,0,0.1474964985994398) 100%)">
+            <h3 class="m-0 bg-warning" id="tag"><%= reservation.status %></h3>
+            <h2 class="m-0" id="bar-card-name"><%= reservation.bar.name %></h2>
+            <% if reservation.bar.address.size >= 30 %>
+              <p class="m-0" id="bar-address-name"><%= reservation.bar.address.first(30) %>...</p>
+            <% else %>
+              <p class="m-0" id="bar-address-name"><%= reservation.bar.address %></p>
             <% end %>
-          <% end %>
+            <h2 class="m-0" id="bar-reservation-details"><%= reservation.date %> at <%= reservation.hours.hour %>:<%= reservation.hours.min %> for <%= reservation.number_of_guest %> people</h2>
+          </div>
+        <% end %>
+      <% end %>
 
           <h3>Accepted</h3>
 
       <% @user.reservations.each do |reservation|%>
         <% if reservation.status == "Accepté" %>
-          <div class="card text-primary" style="width: 18rem;">
-            <%= image_tag reservation.bar.photo || url_for(reservation.bar.photos.first), style: "height: 200px;object-fit: cover;" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= reservation.bar.name%></h5>
-              <p class="card-text"><%= reservation.date %>
-                <%= reservation.hours %>
-                <%=reservation.number_of_guest%>
-              </p>
-                </div>
-            </div>
+          <div class="card-category col-12 my-4" style="background-image:linear-gradient(0deg, rgba(0,0,0,0.1474964985994398) 0%, rgba(0,0,0,0.1474964985994398) 100%)">
+            <h3 class="m-0 bg-success" id="tag"><%= reservation.status %></h3>
+            <h2 class="m-0" id="bar-card-name"><%= reservation.bar.name %></h2>
+            <% if reservation.bar.address.size >= 30 %>
+              <p class="m-0" id="bar-address-name"><%= reservation.bar.address.first(30) %>...</p>
+            <% else %>
+              <p class="m-0" id="bar-address-name"><%= reservation.bar.address %></p>
             <% end %>
-          <% end %>
+            <h2 class="m-0" id="bar-reservation-details"><%= reservation.date %> at <%= reservation.hours.hour %>:<%= reservation.hours.min %> for <%= reservation.number_of_guest %> people</h2>
+          </div>
+        <% end %>
+      <% end %>
 
 
           <h3>Denied</h3>
 
       <% @user.reservations.each do |reservation|%>
         <% if reservation.status == "Refusé" %>
-          <div class="card text-primary" style="width: 18rem;">
-            <%= image_tag reservation.bar.photo || url_for(reservation.bar.photos.first), style: "height: 200px;object-fit: cover;" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= reservation.bar.name%></h5>
-              <p class="card-text"><%= reservation.date %>
-                <%= reservation.hours %>
-                <%=reservation.number_of_guest%>
-              </p>
-                </div>
-            </div>
+          <div class="card-category col-12 my-4" style="background-image:linear-gradient(0deg, rgba(0,0,0,0.1474964985994398) 0%, rgba(0,0,0,0.1474964985994398) 100%)">
+            <h3 class="m-0 bg-danger" id="tag"><%= reservation.status %></h3>
+            <h2 class="m-0" id="bar-card-name"><%= reservation.bar.name %></h2>
+            <% if reservation.bar.address.size >= 30 %>
+              <p class="m-0" id="bar-address-name"><%= reservation.bar.address.first(30) %>...</p>
+            <% else %>
+              <p class="m-0" id="bar-address-name"><%= reservation.bar.address %></p>
             <% end %>
-          <% end %>
+            <h2 class="m-0" id="bar-reservation-details"><%= reservation.date %> at <%= reservation.hours.hour %>:<%= reservation.hours.min %> for <%= reservation.number_of_guest %> people</h2>
+          </div>
+        <% end %>
+      <% end %>
 
     </div>
     <div class="col-6">
-      <h2>Mes demandes de réservation</h2>
+      <h2>My booking requests</h2>
 
 
         <% @resa.each do |bar|%>
-          <div class="card" style="width: 18rem;">
-            <%= image_tag bar.photo || url_for(bar.photos.first), style: "height: 200px;object-fit: cover;" %>
-            <div class="card-body text-primary">
-              <h5 class="card-title"><%= bar.name %></h5>
-                <div class="card-text">
+          <div class="card col-12 px-0 mt-4" >
+            <%= image_tag bar.photo || url_for(bar.photos.first), style: "height: 200px;object-fit: cover;filter: brightness(0.7)" %>
+          </div>
+            <div class="card-body text-light text-center px-0">
+              <h5 class="card-title" style="font-size: 32px;"><%= bar.name %></h5>
                   <% bar.reservations.each do |reservation|%>
-                  <div class="<%= 'green' if reservation.status == 'Accepté' %>">
-                  <div class="<%= 'red' if reservation.status == 'Refusé' %>">
-                    <p> <%= reservation.hours %></p>
-                    <p><%=reservation.number_of_guest%></p>
-                  </div>
-                  </div>
+                <div class="card-text py-3 my-3" style="box-shadow: 0 0 15px rgba(255,255,255,0.2);border-radius: 5px;">
+                    <h2 class="m-0" style="font-size: 18px;">Reservation from <%= reservation.user.username %></h2>
+                    <h2 class="my-2" style="font-size: 24px;"><%= reservation.date %> at <%= reservation.hours.hour %>:<%= reservation.hours.min %> for <%= reservation.number_of_guest %> people</h2>
+                    <h2 class="m-0" style="font-size: 18px;">Status: <%= reservation.status %></h2>
                   <% if reservation.status == 'En attente'%>
-                    <%= link_to 'Accepted', change_status_bar_reservation_path(reservation.bar.id, reservation.id), method: :patch ,class: "btn btn-primary"%>
-                    <%= link_to 'Denied', change_refuse_bar_reservation_path(reservation.bar.id, reservation.id), method: :patch ,class: "btn btn-primary"%>
+                    <%= link_to 'Accept', change_status_bar_reservation_path(reservation.bar.id, reservation.id), method: :patch ,class: "btn btn-outline-success mt-2"%>
+                    <%= link_to 'Refuse', change_refuse_bar_reservation_path(reservation.bar.id, reservation.id), method: :patch ,class: "btn btn-outline-danger mt-2"%>
                       <% end %>
+                </div>
                   <% end %>
                 </div>
 
