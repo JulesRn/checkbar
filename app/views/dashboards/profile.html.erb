@@ -28,7 +28,7 @@
       <h3>Pending</h3>
 
       <% @user.reservations.each do |reservation|%>
-        <% if reservation.status == "En attente" %>
+        <% if reservation.status == "Pending" %>
           <div class="card-category col-12 my-4" style="background-image:linear-gradient(0deg, rgba(0,0,0,0.1474964985994398) 0%, rgba(0,0,0,0.1474964985994398) 100%)">
             <h3 class="m-0 bg-warning" id="tag"><%= reservation.status %></h3>
             <h2 class="m-0" id="bar-card-name"><%= reservation.bar.name %></h2>
@@ -45,7 +45,7 @@
           <h3>Accepted</h3>
 
       <% @user.reservations.each do |reservation|%>
-        <% if reservation.status == "Accepté" %>
+        <% if reservation.status == "Accepted" %>
           <div class="card-category col-12 my-4" style="background-image:linear-gradient(0deg, rgba(0,0,0,0.1474964985994398) 0%, rgba(0,0,0,0.1474964985994398) 100%)">
             <h3 class="m-0 bg-success" id="tag"><%= reservation.status %></h3>
             <h2 class="m-0" id="bar-card-name"><%= reservation.bar.name %></h2>
@@ -63,7 +63,7 @@
           <h3>Denied</h3>
 
       <% @user.reservations.each do |reservation|%>
-        <% if reservation.status == "Refusé" %>
+        <% if reservation.status == "Denied" %>
           <div class="card-category col-12 my-4" style="background-image:linear-gradient(0deg, rgba(0,0,0,0.1474964985994398) 0%, rgba(0,0,0,0.1474964985994398) 100%)">
             <h3 class="m-0 bg-danger" id="tag"><%= reservation.status %></h3>
             <h2 class="m-0" id="bar-card-name"><%= reservation.bar.name %></h2>
@@ -88,22 +88,21 @@
           </div>
             <div class="card-body text-light text-center px-0">
               <h5 class="card-title" style="font-size: 32px;"><%= bar.name %></h5>
-                  <% bar.reservations.each do |reservation|%>
-                <div class="card-text py-3 my-3" style="box-shadow: 0 0 15px rgba(255,255,255,0.2);border-radius: 5px;">
-                    <h2 class="m-0" style="font-size: 18px;">Reservation from <%= reservation.user.username %></h2>
-                    <h2 class="my-2" style="font-size: 24px;"><%= reservation.date %> at <%= reservation.hours.hour %>:<%= reservation.hours.min %> for <%= reservation.number_of_guest %> people</h2>
-                    <h2 class="m-0" style="font-size: 18px;">Status: <%= reservation.status %></h2>
-                  <% if reservation.status == 'En attente'%>
-                    <%= link_to 'Accept', change_status_bar_reservation_path(reservation.bar.id, reservation.id), method: :patch ,class: "btn btn-outline-success mt-2"%>
-                    <%= link_to 'Refuse', change_refuse_bar_reservation_path(reservation.bar.id, reservation.id), method: :patch ,class: "btn btn-outline-danger mt-2"%>
-                      <% end %>
-                </div>
-                  <% end %>
-                </div>
-
+              <% bar.reservations.each do |reservation|%>
+              <div class="card-text py-3 my-3" style="box-shadow: 0 0 15px rgba(255,255,255,0.2);border-radius: 5px;">
+                <h2 class="m-0" style="font-size: 18px;">Reservation from <%= reservation.user.username %></h2>
+                <h2 class="my-2" style="font-size: 24px;"><%= reservation.date %> at <%= reservation.hours.hour %>:<%= reservation.hours.min %> for <%= reservation.number_of_guest %> people</h2>
+                <h2 class="m-0" style="font-size: 18px;">Status: <%= reservation.status %></h2>
+                <% if reservation.status == 'Pending'%>
+                  <%= link_to 'Accept', change_status_bar_reservation_path(reservation.bar.id, reservation.id), method: :patch ,class: "btn btn-outline-success mt-2"%>
+                  <%= link_to 'Refuse', change_refuse_bar_reservation_path(reservation.bar.id, reservation.id), method: :patch ,class: "btn btn-outline-danger mt-2"%>
+                <% end %>
+              </div>
+              <% end %>
             </div>
-          </div>
         <% end %>
+          </div>
+        </div>
 
     </div>
   </div>
