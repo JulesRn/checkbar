@@ -13,6 +13,7 @@ class ReservationsController < ApplicationController
     else
       render "bars/show"
     end
+
   end
 
   def new
