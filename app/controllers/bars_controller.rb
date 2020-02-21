@@ -38,7 +38,7 @@ class BarsController < ApplicationController
     authorize @bar
     @bar.user = current_user
     @bar.opening_days = params[:days].select {|k,v|v =='1'}.keys
-    @bar.save!
+    @bar.save
     redirect_to bar_path(@bar)
   end
 
