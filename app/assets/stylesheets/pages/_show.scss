@@ -29,19 +29,19 @@
 }
 
 .rating-show {
-height: 120px;
 }
 
 .comment-show {
-width: 400px;
+  height:30px;
 }
 
 #review_rating {
-  height: 50px;
+  height: 60px;
+  width:50px;
   background-color: #fafafa;
-  border-radius: 50px;
+  border-radius: 5px;
 }
 
-#review-card {
-
+#review-comment {
+width:70%;
 }
