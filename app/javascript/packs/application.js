@@ -24,5 +24,5 @@ document.addEventListener('turbolinks:load', () => {
     text: "Check the status of your booking on your dashboard",
     icon: "success"
   });
-})
+});
 
