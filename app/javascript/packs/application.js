@@ -17,8 +17,3 @@ document.addEventListener('turbolinks:load', () => {
   if (document.querySelector("#flatpickr")) flatpickr("#flatpickr", {});
 
 })
-
-
-  window.addEventListener('DOMContentLoaded', () => {
-  })
-
