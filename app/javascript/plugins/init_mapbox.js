@@ -17,8 +17,8 @@ const addMarkersToMap = (map, markers) => {
         .setLngLat([ marker.lng, marker.lat ])
         .addTo(map);
     });
-    // map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-    //                                   mapboxgl: mapboxgl }));
+  map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+                                       mapboxgl: mapboxgl }));
 };
 
 const fitMapToMarkers = (map, markers) => {
