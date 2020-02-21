@@ -36,33 +36,34 @@
       <p style="width: 70%;"><%= @bar.description %></p>
 
     <div class="list-group reviews">
-      <h2>Reviews</h2>
-    <div class="card p-3 my-2 rating" id="review-card" style="border-radius: 5px; background-color: black; width: 100%;">
-      <%= simple_form_for [@bar, @review] do |f| %>
-      <div class="row d-flex justify-content-around align-items-center input-show">
-        <div class="rating-show"><%= f.input :rating, collection: 0..5,  label: "Rating"%></div>
-        <div class="comment-show"><%= f.input :content, class: "col-6 m-0 input-show", placeholder: "Give a feedback", label: false %></div>
-        <%= f.submit class: 'btn btn-outline-light input-show' %>
-      </div>
+
+    <h2>Reviews</h2>
+
+    <%= simple_form_for [@bar, @review] do |f| %>
+    <div class="row d-flex align-items-top container">
+      <%= f.input :rating, collection: 0..5, default: 3,  label: "Rating", label: false%>
+      <div id="review-comment"><%= f.input :content, class: "col-10 m-0 input-show", placeholder: "Give a feedback", label: false %></div>
+      <%= f.submit class: 'btn btn-outline-light input-show p-3 mb-3' %>
+    <% end %>
     </div>
-      <% end %>
-       <% @bar.reviews.each do |review| %>
-         <li class="list-group-item reviews">
-           <small>
-             <p><%= review.user.username %></p>
-             <% count = 0 %>
-             <% 5.times do %>
-               <% if review.rating > count %>
-                 <i class="fas fa-star"></i>
-               <% else %>
-                 <i class="far fa-star"></i>
-               <% end %>
-               <% count += 1 %>
-             <% end %>
-          </small>
-          <p><%= review.content %></p>
-        </li>
-      <% end %>
+
+    <% @bar.reviews.each do |review| %>
+      <li class="list-group-item reviews">
+        <small>
+          <p><%= review.user.username %></p>
+          <% count = 0 %>
+          <% 5.times do %>
+            <% if review.rating > count %>
+              <i class="fas fa-star"></i>
+            <% else %>
+              <i class="far fa-star"></i>
+            <% end %>
+            <% count += 1 %>
+          <% end %>
+        </small>
+        <p><%= review.content %></p>
+      </li>
+    <% end %>
     </div>
 
     <div class="row ">
@@ -81,13 +82,13 @@
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                 <%= cl_image_tag @bar.photos[0].key, alt: "First slide", class: "d-block w-100", style: 'object-fit: cover' %>
+                 <%= cl_image_tag @bar.photos[0].key, alt: "First slide", class: "d-block w-100 h-100", style: "object-fit: cover;" %>
               </div>
               <div class="carousel-item">
-                 <%= cl_image_tag @bar.photos[1].key, alt: "Second slide", class: "d-block w-100", style: 'object-fit: cover' %>
+                 <%= cl_image_tag @bar.photos[1].key, alt: "Second slide", class: "d-block w-100 h-100", style: "object-fit: cover;" %>
               </div>
               <div class="carousel-item">
-                 <%= cl_image_tag @bar.photos[2].key, alt: "Third slide", class: "d-block w-100", style: 'object-fit: cover' %>
+                 <%= cl_image_tag @bar.photos[2].key, alt: "Third slide", class: "d-block w-100 h-100", style: "object-fit: cover;" %>
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -107,7 +108,7 @@
 
       <div id="map" class="container p-0 m-0 col-4"
          style="width: 100%;
-         height: 260px;"
+         height: 270px;"
          data-markers="<%= @markers.to_json %>"
          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
