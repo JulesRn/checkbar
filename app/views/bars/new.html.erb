@@ -1,21 +1,20 @@
 <div class="banner text-light text-center" style="background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 100%),url('https://images.pexels.com/photos/3201920/pexels-photo-3201920.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; min-height: 100vh;">
 
   <div class="menu row justify-content-between px-5 py-4">
-    <div class="column">
-      <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;", data: {turbolinks: 'false'}%>
+      <div class="column">
+        <%= link_to "Checkbar", bars_path , style: "font-size:32px; text-decoration: none; color: white;", data: {turbolinks: 'false'}%>
+      </div>
+      <div class="column">
+        <%= link_to "Create a bar", new_bar_path, class: "btn btn-outline-light" %>
+        <%  if !user_signed_in? %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
+        <% else %>
+          <%= link_to 'My dashboard', profile_path, class: "btn btn-outline-light" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/clairebauduin", class: "avatar-large", alt: "avatar-large"%>
+        <% end %>
+      </div>
     </div>
-    <div class="column">
-      <% if policy(Bar).create? %>
-      <%= link_to "Create a bar", new_bar_path, class: "btn btn-outline-light" %>
-      <% end %>
-      <%  if !user_signed_in? %>
-      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
-      <% else %>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
-      <% end %>
-      <%= image_tag "https://kitt.lewagon.com/placeholder/users/clairebauduin", class: "avatar-large", alt: "avatar-large"%>
-    </div>
-  </div>
 
   <div class="container py-5">
     <h1 style="font-size: 64px" >Create a bar</h1>

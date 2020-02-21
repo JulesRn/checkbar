@@ -7,12 +7,12 @@
       <div class="column">
         <%= link_to "Create a bar", new_bar_path, class: "btn btn-outline-light" %>
         <%  if !user_signed_in? %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-light" %>
         <% else %>
-        <%= link_to 'My dashboard', profile_path, class: "btn btn-outline-light" %>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
-        <% end %>
+          <%= link_to 'My dashboard', profile_path, class: "btn btn-outline-light" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
         <%= image_tag "https://kitt.lewagon.com/placeholder/users/clairebauduin", class: "avatar-large", alt: "avatar-large"%>
+        <% end %>
       </div>
     </div>
 
@@ -24,49 +24,17 @@
     </div>
   </div>
 
-  <br>
-  <br>
-
   <div class="container text-light">
-      <% if policy(@bar).edit? %>
-      <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-outline-light mb-4' do %>
-      <i class="fa fa-pencil"></i> Edit this bar
-      <% end %>
-      <% end %>
       <p style="width: 70%;"><%= @bar.description %></p>
+      <% if policy(@bar).edit? %>
+        <%= link_to edit_bar_path(@bar.id), class: 'pull-right btn btn-outline-light mb-4' do %>
+        <i class="fa fa-pencil"></i>Edit this bar
+        <% end %>
+      <% end %>
 
-    <div class="list-group reviews">
-      <h2>Reviews</h2>
-    <div class="card p-3 my-2 rating" id="review-card" style="border-radius: 5px; background-color: black; width: 100%;">
-      <%= simple_form_for [@bar, @review] do |f| %>
-      <div class="row d-flex justify-content-around align-items-center input-show">
-        <div class="rating-show"><%= f.input :rating, collection: 0..5,  label: "Rating"%></div>
-        <div class="comment-show"><%= f.input :content, class: "col-6 m-0 input-show", placeholder: "Give a feedback", label: false %></div>
-        <%= f.submit class: 'btn btn-outline-light input-show' %>
-      </div>
-    </div>
-      <% end %>
-       <% @bar.reviews.each do |review| %>
-         <li class="list-group-item reviews">
-           <small>
-             <p><%= review.user.username %></p>
-             <% count = 0 %>
-             <% 5.times do %>
-               <% if review.rating > count %>
-                 <i class="fas fa-star"></i>
-               <% else %>
-                 <i class="far fa-star"></i>
-               <% end %>
-               <% count += 1 %>
-             <% end %>
-          </small>
-          <p><%= review.content %></p>
-        </li>
-      <% end %>
-    </div>
 
     <div class="row ">
-        <div class="carousel w-100 col-5 pb-2">
+      <div class="carousel w-100 col-5 pb-2">
 
         <% if @bar.photos.one? %>
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -81,13 +49,13 @@
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                 <%= cl_image_tag @bar.photos[0].key, alt: "First slide", class: "d-block w-100", style: 'object-fit: cover' %>
+                 <%= cl_image_tag @bar.photos[0].key, alt: "First slide", class: "d-block w-100 h-100", style: "object-fit: cover;" %>
               </div>
               <div class="carousel-item">
-                 <%= cl_image_tag @bar.photos[1].key, alt: "Second slide", class: "d-block w-100", style: 'object-fit: cover' %>
+                 <%= cl_image_tag @bar.photos[1].key, alt: "Second slide", class: "d-block w-100 h-100", style: "object-fit: cover;" %>
               </div>
               <div class="carousel-item">
-                 <%= cl_image_tag @bar.photos[2].key, alt: "Third slide", class: "d-block w-100", style: 'object-fit: cover' %>
+                 <%= cl_image_tag @bar.photos[2].key, alt: "Third slide", class: "d-block w-100 h-100", style: "object-fit: cover;" %>
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -101,8 +69,8 @@
           </div>
           <% else %>
             <%= image_tag "bar.jpg", alt: "First slide", class: "d-block w-100" %>
-          <% end %>
-        </div>
+        <% end %>
+      </div>
 
 
       <div id="map" class="container p-0 m-0 col-4"
@@ -112,6 +80,9 @@
          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
+
+    <div class="list-group reviews">
+      <h2>Reviews</h2>
 
 
       <div class="d-flex card col-4 offset-4 p-4" id="child-form" style="border-radius: 5px; background-color: rgba(255,255,255,0.4);">
@@ -123,22 +94,61 @@
           <%= f.input :hours, as: :time, default: Time.parse('17:00')%>
           <%= f.input :number_of_guest %>
           <%= f.button :submit, class: 'btn btn-outline-light', id: "sweet-alert-demo"%>
-          <!-- data: { confirm: "Confirm your reservation to #{@bar.name}?"  -->
         <% end %>
+
+      <%= simple_form_for [@bar, @review] do |f| %>
+      <div class="row d-flex align-items-top container">
+        <%= f.input :rating, collection: 0..5, default: 3,  label: "Rating", label: false%>
+        <div id="review-comment"><%= f.input :content, class: "col-10 m-0 input-show", placeholder: "Give a feedback", label: false %></div>
+        <%= f.submit class: 'btn btn-outline-light input-show p-3 mb-3' %>
+      <% end %>
       </div>
-</div>
+
+      <% @bar.reviews.each do |review| %>
+        <li class="list-group-item reviews">
+          <small>
+            <p><%= review.user.username %></p>
+            <% count = 0 %>
+            <% 5.times do %>
+              <% if review.rating > count %>
+                <i class="fas fa-star"></i>
+              <% else %>
+                <i class="far fa-star"></i>
+              <% end %>
+              <% count += 1 %>
+            <% end %>
+          </small>
+          <p><%= review.content %></p>
+        </li>
+      <% end %>
+    </div>
+
+    <div class="d-flex card col-4 offset-4 p-4" id="child-form" style="border-radius: 5px; background-color: rgba(255,255,255,0.4);">
+      <h4>Book online!</h4>
+      <h4> Open : <%= @bar.opening_days.join(" - ").capitalize %></h4>
+      <p>From <%= @bar.opening_hours.hour %>:<%= @bar.opening_hours.min %> to <%= @bar.closing_hours.hour %>:<%= @bar.closing_hours.min %> </p>
+      <%= simple_form_for [@bar, @reservation] do |f| %>
+        <input name="date" id="flatpickr" class="col-10 offsert-10">
+        <%= f.input :hours, as: :time, default: Time.parse('17:00')%>
+        <%= f.input :number_of_guest %>
+        <%= f.button :submit, class: 'btn btn-outline-light', data: { confirm: "Confirm your reservation to #{@bar.name}?" }%>
+      <% end %>
+    </div>
   </div>
-      <div class="footer">
-  <div class="footer-links">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
+
+  <div class="footer mt-5">
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="footer-copyright">
+      The place to drink <i class="fas fa-glass-cheers"></i>
+    </div>
   </div>
-  <div class="footer-copyright">
-    The place to drink <i class="fas fa-glass-cheers"></i>
-  </div>
+
 </div>
 
 
