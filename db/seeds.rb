@@ -38,15 +38,17 @@ photo = ["https://res.cloudinary.com/ddw4b3fnq/image/upload/v1582122027/15802148
 
 puts "try to create bar"
 
+
 10.times do
+
 bar = Bar.create!(
     name: Faker::Restaurant.name,
     description: Faker::Restaurant.description ,
     capacity: capacity,
     address:Faker::Address.street_address,
     category: category.sample,
-    opening_hours: DateTime.now,
-    closing_hours: DateTime.now,
+    opening_hours: Time.parse('17:00'),
+    closing_hours: Time.parse('02:00'),
     photo: photo.sample,
     user: user,
     latitude: Faker::Address.latitude,
