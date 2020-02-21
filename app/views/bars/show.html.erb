@@ -36,7 +36,7 @@
 
     <div class="list-group reviews">
       <h2>Reviews</h2>
-    <div class="card p-3 my-2 rating" style="border-radius: 5px; background-color: black; width: 100%;">
+    <div class="card p-3 my-2 rating" id="review-card" style="border-radius: 5px; background-color: black; width: 100%;">
       <%= simple_form_for [@bar, @review] do |f| %>
       <div class="row d-flex justify-content-around align-items-center input-show">
         <div class="rating-show"><%= f.input :rating, collection: 0..5,  label: "Rating"%></div>
