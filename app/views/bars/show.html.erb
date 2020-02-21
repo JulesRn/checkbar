@@ -122,7 +122,8 @@
           <input name="date" id="flatpickr" class="col-10 offsert-10">
           <%= f.input :hours, as: :time, default: Time.parse('17:00')%>
           <%= f.input :number_of_guest %>
-          <%= f.button :submit, class: 'btn btn-outline-light', data: { confirm: "Confirm your reservation to #{@bar.name}?" }%>
+          <%= f.button :submit, class: 'btn btn-outline-light', id: "sweet-alert-demo"%>
+          <!-- data: { confirm: "Confirm your reservation to #{@bar.name}?"  -->
         <% end %>
       </div>
 </div>
