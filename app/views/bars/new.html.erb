@@ -43,7 +43,7 @@
             <%= f.input :photos, as: :file, input_html: { multiple: true }, class: "col-8" %>
           </div>
         <div class="form-actions text-center mt-4">
-          <%= f.button :submit, "Create a bar", class: 'btn btn-outline-light' %>
+          <%= f.button :submit, "Create a bar", class: 'btn btn-outline-light', data: { turbolinks: false} %>
         </div>
       <% end %>
       </div>
