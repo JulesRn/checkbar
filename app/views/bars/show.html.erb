@@ -83,6 +83,18 @@
     <div class="list-group reviews">
       <h2>Reviews</h2>
 
+
+      <div class="d-flex card col-4 offset-4 p-4" id="child-form" style="border-radius: 5px; background-color: rgba(255,255,255,0.4);">
+          <h4>Book online!</h4>
+        <h4> Open : <%= @bar.opening_days.join(" - ").capitalize %></h4>
+          <p>From <%= @bar.opening_hours.hour %>:<%= @bar.opening_hours.min %> to <%= @bar.closing_hours.hour %>:<%= @bar.closing_hours.min %> </p>
+          <%= simple_form_for [@bar, @reservation] do |f| %>
+          <input name="date" id="flatpickr" class="col-10 offsert-10">
+          <%= f.input :hours, as: :time, default: Time.parse('17:00')%>
+          <%= f.input :number_of_guest %>
+          <%= f.button :submit, class: 'btn btn-outline-light', id: "sweet-alert-demo"%>
+        <% end %>
+
       <%= simple_form_for [@bar, @review] do |f| %>
       <div class="row d-flex align-items-top container">
         <%= f.input :rating, collection: 0..5, default: 3,  label: "Rating", label: false%>

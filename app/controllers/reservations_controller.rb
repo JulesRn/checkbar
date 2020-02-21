@@ -8,7 +8,9 @@ class ReservationsController < ApplicationController
     @reservation.user = current_user
     @reservation.bar = @bar
     @reservation.status = "Pending"
+
     if @reservation.save!
+      sleep 3
       redirect_to bar_path(@bar)
     else
       render "bars/show"
